@@ -5,9 +5,7 @@
   background-color: gray;
 }
 .App {
-  
   min-height: 110vh;
-
 
   display: flex;
   flex-direction: column;
@@ -20,9 +18,10 @@
   max-width: 1000px;
   width: 1000px;
 
-  max-height: 800px;
-  height: 800px;
+  max-height: 1000px;
+  height: 1000px;
 
+  background-color: aqua;
 
   border-left: 2px solid #ced4da;
   border-right: 2px solid #ced4da;
@@ -51,6 +50,6 @@
   background-color: white;
 
   border-radius: 20px;
-
+  border: none;
   
 }
