@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import Nav from './components/Nav';
-import './App.css';
-import { useState } from 'react';
-import Modal from './components/Modal/Modal';
+import React from 'react'
+import { useState } from 'react'
+import Modal from './components/Modal/Modal'
 
 function App() {
-  const [modalOpen, setModalOpen] = useState();
+  const [showModal , setShowModal] = useState(false);
 
-  const showModal =() => {
-    setModalOpen(true);
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => {
+//    console.log('hi2')
+    setShowModal(false);
   }
   return (
-    <div className='App'>
-      <div className='app-container'>
-        <button onClick={showModal} className="btn-modal">
-          모달 생성하기
-        </button>
-        {modalOpen && <Modal setModalOpen = {setModalOpen} />}
-      </div>
-    </div>
-  );
+    <>
+      <button onClick={handleOpenModal}>모달 열기</button>
+      {showModal && <Modal closeModal = {handleCloseModal}/>}
+    </>
+  )
 }
 
-export default App;
+export default App
