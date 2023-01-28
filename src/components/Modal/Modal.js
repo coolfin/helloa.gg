@@ -36,20 +36,25 @@ function Modal( { closeModal } ) {
                 {HELL_DATA.map(el => {
                   return <option key={el.id}>{el.value}</option>
                 })}
-
               </HellDropDown>
             </div>
+
             <div>
               캐릭터 명:
               <input type="text" name="username" value={username} onChange={handleUserName}/>             
             </div>
             {username}  
+
             <div>
               이미지 첨부 or 내용 :
               <input type="text"/>
             </div>
-            <button>전달</button>
-            <CloseIcon onClick={handleCloseModal}>취소</CloseIcon>
+              
+            <div>
+              <button>전달</button>
+              <CloseIcon onClick={handleCloseModal}>취소</CloseIcon>
+            </div>
+
           </ModalContainer>
     </Background>
   )
