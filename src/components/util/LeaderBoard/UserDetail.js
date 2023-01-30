@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export default function UserDetail({
   nickname,
+  job,
   ValtanClear,
   VyakissClear,
   SatonClear,
@@ -11,24 +12,27 @@ export default function UserDetail({
   return (
     <Container className={className}>
       <Nickname>
-        <h4>닉네임</h4>
-        <span>{nickname}</span>
+        <div>{nickname}</div>
+        <div>
+          <img className='job_img'/>
+        </div>
       </Nickname>
-
+    
       <HellCleared>
         <div>
-          <strong className="title">[HELL] 발탄</strong>
           <span className="content">{ValtanClear} 마리</span>
         </div>
 
         <div>
-          <strong className="title">[HELL] 비아키스</strong>
           <span className="content">{VyakissClear} 마리</span>
         </div>
 
         <div>
-          <strong className="title">[HELL] 쿠크세이튼</strong>
           <span className="content">{SatonClear} 마리</span>
+        </div>
+
+        <div>
+          <span className='content'>{ValtanClear+SatonClear+VyakissClear} 마리</span>
         </div>
       </HellCleared>
     </Container>
@@ -36,12 +40,19 @@ export default function UserDetail({
 }
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   background: rgb(50,50,50);
 
-  width: 500px;
-  padding: 24px;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing:border-box;
+
+  width: 100%;
+  
+  max-height: 50px;
+  height:50px;
 
   border-radius: 10px;
 `;
@@ -49,26 +60,29 @@ const Container = styled.div`
 const Nickname = styled.div`
   display: flex;
 
-  h4 {
-    display: inline-block;
-    width: 120px;
-    margin: 0;
-    font-size: 1.1rem;
-  }
+  justify-content: center;
+  align-items: center;
 
-  span {
-    font-size: 0.85rem;
-    font-weight: bold;
-    align-self: flex-end;
+  flex: none;
+  color:white;
+
+  font-size: 0.6rem;
+
+  .job_img {
+    width: 32px;
+    height: 32px;
+
+    background-color:white;
   }
 `;
 
 const HellCleared = styled.div`
-  padding: 6px 0;
+  display: flex;
 
-  & > div + div {
-    margin-top: 4px;
-  }
+  margin-left : auto;
+
+  justify-content: space-between;
+  align-items: center;
 
   .title {
     display: inline-block;

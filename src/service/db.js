@@ -17,10 +17,13 @@ const hellUserBuild = (() => {
   };
 })();
 
+//훈서가 넘겨줘야됨
+
 const users = [
   {
     nickname: '8un',
     password: '1234',
+    job : 'gunner',
     ValtanClear: 15,
     VyakissClear: 11,
     SatonClear: 4,
@@ -30,6 +33,7 @@ const users = [
   {
     nickname: 'coolfin',
     password: 'test',
+    job: 'striker',
     ValtanClear: 22,
     VyakissClear: 30,
     SatonClear: 16,

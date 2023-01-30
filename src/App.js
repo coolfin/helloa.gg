@@ -13,6 +13,7 @@ import MyPage from "./components/pages/MyPage";
 //Css
 import styled from "styled-components";
 import { Routes, Route, Router } from "react-router-dom";
+import "./App.css"
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -39,12 +40,10 @@ function App() {
 export default App;
 
 const Container = styled.div`
-  height: 100vh;
+  height: 110vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background-color: rgb(13,19,19);
 `;
 
 const ClearBtn = styled.button`

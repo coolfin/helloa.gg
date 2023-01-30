@@ -82,10 +82,11 @@ const ModalContainer = styled.div`
 
   transfrom : translate(-50%,-50%);
 
+
   width: 20rem;
   height: 50vh;
 
-  background: white;
+  background-color: white;
   border-radius: 10px;
 
   text-align:center;
