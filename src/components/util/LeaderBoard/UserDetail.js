@@ -38,7 +38,7 @@ export default function UserDetail({
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background: gray;
+  background: rgb(50,50,50);
 
   width: 500px;
   padding: 24px;

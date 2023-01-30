@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import * as authAPI from '../service/auth';
-import UserDetail from './LeaderBoard/UserDetail';
+import * as authAPI from '../../service/auth';
+import UserDetail from '../util/LeaderBoard/UserDetail';
 
 export default function HellUser() {
   const [users, setUsers] = useState();

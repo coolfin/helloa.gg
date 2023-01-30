@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
 
-import Modal from "./components/Modal/Modal";
-import Main from "./components/Main";
-import MyPage from "./components/MyPage";
+import Modal from "./components/util/Modal/Modal";
+import Main from "./components/pages/Main"
+import MyPage from "./components/pages/MyPage";
 
 import PublicRoute from "./components/PublicRoute";
 
@@ -40,5 +40,5 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: gray;
+  background-color: rgb(13,19,19);
 `;
