@@ -23,7 +23,7 @@ const users = [
   {
     nickname: '8un',
     password: '1234',
-    job : 'gunner',
+    job: 'gunslinger',
     ValtanClear: 15,
     VyakissClear: 11,
     SatonClear: 4,
@@ -31,13 +31,53 @@ const users = [
   },
 
   {
-    nickname: 'coolfin',
+    nickname: '쿨핀',
     password: 'test',
     job: 'striker',
     ValtanClear: 22,
     VyakissClear: 30,
     SatonClear: 16,
     AbrelClear: 1,
+  },
+
+  {
+    nickname: '폰동규',
+    password: '1234123',
+    job: 'gunslinger',
+    ValtanClear: 1,
+    VyakissClear: 0,
+    SatonClear: 0,
+    AbrelClear: 0,
+  },
+
+  {
+    nickname: '예롬',
+    password: 'test',
+    job: 'bard',
+    ValtanClear: 0,
+    VyakissClear: 0,
+    SatonClear: 0,
+    AbrelClear: 0,
+  },
+
+  {
+    nickname: '권은비',
+    password: '11',
+    job: 'glaivier',
+    ValtanClear: 0,
+    VyakissClear: 0,
+    SatonClear: 0,
+    AbrelClear: 0,
+  },
+
+  {
+    nickname: 'PSGLeoMessi',
+    password: 'test',
+    job: 'scouter',
+    ValtanClear: 0,
+    VyakissClear: 0,
+    SatonClear: 0,
+    AbrelClear: 0,
   },
 ];
 

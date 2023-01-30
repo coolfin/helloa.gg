@@ -14,10 +14,10 @@ export default function UserDetail({
       <Nickname>
         <div>{nickname}</div>
         <div>
-          <img className='job_img'/>
+          <img className="job_img" src={'/class_icons/' + job + '.png'} />
         </div>
       </Nickname>
-    
+
       <HellCleared>
         <div>
           <span className="content">{ValtanClear} 마리</span>
@@ -32,7 +32,9 @@ export default function UserDetail({
         </div>
 
         <div>
-          <span className='content'>{ValtanClear+SatonClear+VyakissClear} 마리</span>
+          <span className="content">
+            {ValtanClear + SatonClear + VyakissClear} 마리
+          </span>
         </div>
       </HellCleared>
     </Container>
@@ -40,19 +42,19 @@ export default function UserDetail({
 }
 
 const Container = styled.div`
-  background: rgb(50,50,50);
+  background: rgb(50, 50, 50);
 
   display: flex;
 
   justify-content: space-between;
   align-items: center;
 
-  box-sizing:border-box;
+  box-sizing: border-box;
 
   width: 100%;
-  
+
   max-height: 50px;
-  height:50px;
+  height: 50px;
 
   border-radius: 10px;
 `;
@@ -64,22 +66,20 @@ const Nickname = styled.div`
   align-items: center;
 
   flex: none;
-  color:white;
+  color: white;
 
   font-size: 0.6rem;
 
   .job_img {
     width: 32px;
     height: 32px;
-
-    background-color:white;
   }
 `;
 
 const HellCleared = styled.div`
   display: flex;
 
-  margin-left : auto;
+  margin-left: auto;
 
   justify-content: space-between;
   align-items: center;

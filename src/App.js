@@ -1,19 +1,20 @@
-import React, { Fragment } from "react";
-import { useState } from "react";
+import React, { Fragment } from 'react';
+import { useState } from 'react';
 
 //Util
-import Modal from "./components/util/Modal/Modal";
-import PublicRoute from "./components/PublicRoute";
-import Nav from "./components/Nav";
+import Modal from './components/util/Modal/Modal';
+import PublicRoute from './components/PublicRoute';
+import Nav from './components/Nav';
+import Tripod from './components/pages/Tripod';
 
 //Pages
-import Main from "./components/pages/Main"
-import MyPage from "./components/pages/MyPage";
+import Main from './components/pages/Main';
+import MyPage from './components/pages/MyPage';
 
 //Css
-import styled from "styled-components";
-import { Routes, Route, Router } from "react-router-dom";
-import "./App.css"
+import styled from 'styled-components';
+import { Routes, Route, Router } from 'react-router-dom';
+import './App.css';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -24,10 +25,9 @@ function App() {
   };
   return (
     <Container>
-      <Nav/>
       <Routes>
         <Route element={<Main />} path="/" />
-        <Route element={<Modal />} path="/clear" />
+        <Route element={<Tripod />} path="/tripod" />
         {/* <PrivateRoute component={MyPage} path="/mypage" exact /> */}
       </Routes>
 
@@ -49,14 +49,14 @@ const Container = styled.div`
 const ClearBtn = styled.button`
   position: fixed;
 
-  max-width:120px;
-  width:120px;
+  max-width: 120px;
+  width: 120px;
 
-  max-height:40px;
-  height:40px;
+  max-height: 40px;
+  height: 40px;
 
-  right:3%;
-  bottom:5%;
+  right: 3%;
+  bottom: 5%;
 
   background-color: white;
 
@@ -69,4 +69,4 @@ const ClearBtn = styled.button`
     cursor: pointer;
     background-color: gray;
   }
-`
+`;
