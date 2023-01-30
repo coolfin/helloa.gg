@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import * as authAPI from '../../service/auth';
-import UserDetail from './UserDetail';
+import * as authAPI from '../service/auth';
+import UserDetail from './LeaderBoard/UserDetail';
 
 export default function HellUser() {
   const [users, setUsers] = useState();
@@ -15,6 +16,9 @@ export default function HellUser() {
 
   return (
     <>
+    
+    <div>
+      </div>
       {!users ? (
         <div>유저 정보를 불러오는 중입니다...</div>
       ) : (
