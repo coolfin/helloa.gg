@@ -1,25 +1,48 @@
-import React from 'react';
-import styled from 'styled-components';
-import JobTripod from '../JobTripod';
+import React, { useState, useEffect } from "react";
+import * as authAPI from "../../service/auth";
+
+import styled from "styled-components";
+import JobTripod from "../util/Tripod/JobTripod";
+import TripodForm from "../util/Tripod/TripodForm";
+import SkillForm from "../util/Tripod/SkillForm";
 
 export default function Tripod() {
+  const [users, setUsers] = useState();
+  const [curjob, setCurJob] = useState();
+
+  useEffect(() => {
+    authAPI.getUsers().then((data) => {
+      setUsers(data);
+    });
+  }, []);
+
+  const handleJobSelect = (value) => {
+    setCurJob(value);
+  }
+
+  useEffect(() => {
+    console.log(curjob);//상태값 변경 시 제대로 state가 변경되는지 확인
+  }, [curjob]);
+
   return (
     <Container>
-      <JobImage>
-        <img src="https://via.placeholder.com/150x500" />
-      </JobImage>
-      <TripodContainer>
-        트라이포드 창
-        <label>
-          <input type="radio" value="통찰력" />
-        </label>
-      </TripodContainer>
+      <InnerContainer>
+        <JobTripod onJobSelected={handleJobSelect}/>
+      </InnerContainer>
+      
+      <InnerContainer>
+        <SkillForm />
+      </InnerContainer>
+
+      <InnerContainer>
+        <TripodForm />
+      </InnerContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
-  width: 60%;
+  width: 80%;
   height: 80vh;
 
   display: flex;
@@ -33,9 +56,6 @@ const Container = styled.div`
   border-left: 1px solid gray;
 `;
 
-const TripodContainer = styled(JobTripod)``;
-
-const JobImage = styled.div`
-  & img {
-  }
+const InnerContainer = styled.div`
 `;
+
