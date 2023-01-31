@@ -9,6 +9,9 @@ import SkillForm from "../util/Tripod/SkillForm";
 export default function Tripod() {
   const [users, setUsers] = useState();
   const [curjob, setCurJob] = useState();
+  const [curjobid, setCurJobId] = useState();
+
+  const [curskill, setCurSkill] = useState([]);
 
   useEffect(() => {
     authAPI.getUsers().then((data) => {
@@ -16,8 +19,13 @@ export default function Tripod() {
     });
   }, []);
 
-  const handleJobSelect = (value) => {
+  const handleJobSelect = (value, id) => {
     setCurJob(value);
+    setCurJobId(id);
+  }
+
+  const handleSkillSelect = (sk) => {
+    setCurSkill(sk);
   }
 
   useEffect(() => {
@@ -31,7 +39,7 @@ export default function Tripod() {
       </InnerContainer>
       
       <InnerContainer>
-        <SkillForm />
+        <SkillForm onSkillSelected = {handleSkillSelect} curId = {curjobid}/>
       </InnerContainer>
 
       <InnerContainer>

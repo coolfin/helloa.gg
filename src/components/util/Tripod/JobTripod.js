@@ -6,7 +6,7 @@ function JobTripod({onJobSelected}) {
 
   const jobList = JOBS.map((item) => (
     <li key={item.id} name={item.name} onClick={() => {
-      if(typeof onJobSelected === "function") onJobSelected(item.job);
+      if(typeof onJobSelected === "function") onJobSelected(item.job, item.id);
     }}>
       <div>{item.job}</div>
     </li>
