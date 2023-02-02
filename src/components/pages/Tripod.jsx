@@ -28,9 +28,9 @@ export default function Tripod() {
     setCurSkill(sk);
   }
 
-  useEffect(() => {
-    console.log(curjob);//상태값 변경 시 제대로 state가 변경되는지 확인
-  }, [curjob]);
+  // useEffect(() => {
+  //   console.log(curjob);//상태값 변경 시 제대로 state가 변경되는지 확인
+  // }, [curjob]);
 
   return (
     <Container>

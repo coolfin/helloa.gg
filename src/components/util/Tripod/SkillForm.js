@@ -38,30 +38,21 @@ export default SkillForm;
 
 const SkillListView = styled.ul`
   display: flex;
-
   justify-content: flex-start;
   align-items: center;
-
   flex-direction: column;
-
   list-decoration: none;
-
   & li:hover {
     background-color: gray;
     cursor: pointer;
   }
-
   & li {
     list-style: none;
-
     max-width: 300px;
     width: 300px;
-
     max-height: 50px;
     height: 50px;
-
     display: flex;
-
     justify-content: space-around;
     align-items: center;
   }
