@@ -32,17 +32,19 @@ function SkillForm({ onSkillSelected, curId }) {
     const sum = _levels.map((lv) => {
       return SKILL_ICR.slice(0, lv).reduce((p, a) => p + a, 0);
     });
-    console.log(sum);
     setTotalPt(sum.reduce((p, a) => p + a, 0));
   };
 
   return (
     <SkillListView>
-      {JSON.stringify(levels)}
-      {JSON.stringify(skillsets)}
+      {/* {JSON.stringify(levels)}
+      {JSON.stringify(skillsets)} */}
       {totalpt}/404
       {skillsets?.map((skill, index) => (
-        <li key={index}>
+        <li key={index} onClick={() => {
+          if(typeof onSkillSelected === "function") onSkillSelected(skill,levels[index]+1)
+        }}>
+          {skill}
           <button onClick={() => setLevel(index, 1)}>+</button>
           {levels[index] + 1}
           <button onClick={() => setLevel(index, -1)}>-</button>

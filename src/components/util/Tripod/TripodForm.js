@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
 
-function TripodForm() {
+import styled from "styled-components";
+
+export default function TripodForm({ onTripodSelected, curSkill }) {
   return (
-    <div>TripodForm</div>
-  )
+    <TripodContainer>
+      <div>{curSkill}</div>
+    </TripodContainer>
+  );
 }
 
-export default TripodForm
+const TripodContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  list-decoration: none;
+`;

@@ -7,25 +7,25 @@ import TripodForm from "../util/Tripod/TripodForm";
 import SkillForm from "../util/Tripod/SkillForm";
 
 export default function Tripod() {
-  const [users, setUsers] = useState();
   const [curjob, setCurJob] = useState();
   const [curjobid, setCurJobId] = useState();
-
-  const [curskill, setCurSkill] = useState([]);
+  const [curskill, setCurSkill] = useState([0, 0]);
 
   useEffect(() => {
-    authAPI.getUsers().then((data) => {
-      setUsers(data);
-    });
-  }, []);
+    console.log("eff:",curskill)
+  }, [curskill])
 
   const handleJobSelect = (value, id) => {
     setCurJob(value);
     setCurJobId(id);
   }
 
-  const handleSkillSelect = (sk) => {
-    setCurSkill(sk);
+  const handleSkillSelect = (sk,lv)  => {
+    setCurSkill([sk,lv]);
+  }
+
+  const handleTpSelect = () => {
+
   }
 
   // useEffect(() => {
@@ -43,8 +43,12 @@ export default function Tripod() {
       </InnerContainer>
 
       <InnerContainer>
-        <TripodForm />
+        <TripodForm onTripodSelected ={handleTpSelect} curSkill = {curskill} />
       </InnerContainer>
+
+      <ShareBtn onClick={() => {
+        alert(curjob+"\n"+curskill)
+      }}>공유</ShareBtn>
     </Container>
   );
 }
@@ -67,3 +71,6 @@ const Container = styled.div`
 const InnerContainer = styled.div`
 `;
 
+
+const ShareBtn = styled.button`
+`
