@@ -7,10 +7,11 @@ import TripodForm from "../util/Tripod/TripodForm";
 import SkillForm from "../util/Tripod/SkillForm";
 
 export default function Tripod() {
-  const [curjob, setCurJob] = useState();
-  const [curjobid, setCurJobId] = useState();
-  const [curskill, setCurSkill] = useState([0, 0]);
+  const [curjob, setCurJob] = useState("워로드");
+  const [curjobid, setCurJobId] = useState(1);
 
+  const [curskill, setCurSkill] = useState([0,0]);
+  
   useEffect(() => {
     console.log("eff:",curskill)
   }, [curskill])
@@ -18,16 +19,17 @@ export default function Tripod() {
   const handleJobSelect = (value, id) => {
     setCurJob(value);
     setCurJobId(id);
+
+    {curjobid !== id && setCurSkill([0,0])}
   }
 
-  const handleSkillSelect = (sk,lv)  => {
+  const handleSkillSelect = (sk,lv, id)  => {
     setCurSkill([sk,lv]);
   }
 
   const handleTpSelect = () => {
 
   }
-
   // useEffect(() => {
   //   console.log(curjob);//상태값 변경 시 제대로 state가 변경되는지 확인
   // }, [curjob]);
@@ -43,12 +45,8 @@ export default function Tripod() {
       </InnerContainer>
 
       <InnerContainer>
-        <TripodForm onTripodSelected ={handleTpSelect} curSkill = {curskill} />
+        <TripodForm onTripodSelected ={handleTpSelect} curId = {curjobid} curSkill = {curskill} />
       </InnerContainer>
-
-      <ShareBtn onClick={() => {
-        alert(curjob+"\n"+curskill)
-      }}>공유</ShareBtn>
     </Container>
   );
 }
@@ -70,7 +68,3 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
 `;
-
-
-const ShareBtn = styled.button`
-`

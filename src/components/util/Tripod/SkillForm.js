@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 
 import styled from "styled-components";
-import { PlayerSkill, playerskills } from "./playerskills";
+import { PlayerSkill } from "./playerskills";
 
 const SKILL_ICR = [1, 1, 2, 4, 4, 8, 8, 8, 12, 6, 6];
 
@@ -12,6 +12,7 @@ function SkillForm({ onSkillSelected, curId }) {
 
   useEffect(() => {
     setLevels(skillsets?.map((_) => 0) ?? []);
+    setTotalPt(0);
   }, [skillsets]);
 
   const setLevel = (skillIndex, delta = 1) => {
