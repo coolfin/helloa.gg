@@ -20,7 +20,8 @@ export default function TripodForm({ onTripodSelected, curSkill, curId }) {
         onSubmit={(e) => {
           e.preventDefault();
           alert(
-            `${e.target.first.value}와 ${e.target.second.value}와 ${e.target.third.value}이 선택되었음.`
+            `${e.target.first.value}와 ${e.target.second.value}와 ${e.target.third.value}이 선택되었음.
+            `
           );
         }}
       >

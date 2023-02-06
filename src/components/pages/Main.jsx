@@ -19,18 +19,35 @@ export default function HellUser() {
         <div>
           <div>
             <p>내 랭킹</p>
-            <p><strong>4위</strong></p>
+            <p>
+              <strong>4위</strong>
+            </p>
           </div>
         </div>
 
         <button>마이페이지</button>
       </Rank>
 
-      <div>ddddd</div>
+      <UserDetailContainer>
+        <div className="nickname-container ">
+          <div>순위</div>
+          <div>유저명</div>
+        </div>
+        <div className="hellcleared-container">
+          <div>헬탄</div>
+          <div>헬비아</div>
+          <div>헬쿠크</div>
+        </div>
+
+        <div className="tripod-container">
+          조율의 서
+        </div>
+      </UserDetailContainer>
+
       {!users ? (
         <div>유저 정보를 불러오는 중입니다...</div>
       ) : (
-        users.map((user) => <WrappedUserDetail {...user} />)
+        users.map((user, index) => <UserDetail key={index} {...user} index={index} />)
       )}
     </Container>
   );
@@ -51,10 +68,52 @@ const Container = styled.div`
   border-left: 1px solid gray;
 `;
 
-const WrappedUserDetail = styled(UserDetail)`
-  
-  & + & {
-    margin-top: 12px;
+const UserDetailContainer = styled.div`
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  width: 90%;
+
+  max-height: 30px;
+  height: 30px;
+
+  border-radius: 10px;
+
+  color: gray;
+  font-weight: bold;
+  font-size: 0.8rem;
+
+  .nickname-container {
+    width:30%;
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    & div {
+
+    margin-left: 24px;
+    }
+  }
+
+  .hellcleared-container {
+    width: 40%;
+    display : flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    & div {
+      margin-right: 40px;
+    }
+  }
+
+  .tripod-container {
+    width: 10%;
   }
 `;
 
@@ -77,7 +136,7 @@ const Rank = styled.div`
 
   color: white;
 
-  background-color: green;
+  background-color: rgb(80,80,80);
 
   & button {
     width: 100px;

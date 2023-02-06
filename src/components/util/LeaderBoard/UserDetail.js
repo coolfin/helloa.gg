@@ -1,48 +1,58 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export default function UserDetail({
   nickname,
   job,
+  jobname,
   ValtanClear,
   VyakissClear,
   SatonClear,
+  index,
   className,
 }) {
   return (
     <Container className={className}>
       <Nickname>
-        <div>{nickname}</div>
+        <div className="rank-txt">
+          <strong>{index + 1}th</strong>
+        </div>
         <div>
-          <img className="job_img" src={'/class_icons/' + job + '.png'} />
+          <img className="job_img" src={"/class_icons/" + job + ".png"} />
+          <div className="info-container">
+            <div className="nickname-txt">{nickname}</div>
+            <div className="job-txt">{jobname}</div>
+          </div>
         </div>
       </Nickname>
-
       <HellCleared>
         <div>
-          <span className="content">{ValtanClear} 마리</span>
+          <img src ="http://via.placeholder.com/32x32"/>
+          <div className="content">{ValtanClear}</div>
         </div>
 
         <div>
-          <span className="content">{VyakissClear} 마리</span>
+          <img src ="http://via.placeholder.com/32x32"/>
+          <div className="content">{VyakissClear}</div>
         </div>
 
         <div>
-          <span className="content">{SatonClear} 마리</span>
-        </div>
-
-        <div>
-          <span className="content">
-            {ValtanClear + SatonClear + VyakissClear} 마리
-          </span>
+          <img src ="http://via.placeholder.com/32x32"/>
+          <div className="content">{SatonClear}</div>
         </div>
       </HellCleared>
+
+
+      <Tripod>
+        <div>조율의 서</div>
+      </Tripod>
+
     </Container>
   );
 }
 
 const Container = styled.div`
-  background: rgb(50, 50, 50);
+  background: rgb(60, 60, 60);
 
   display: flex;
 
@@ -51,19 +61,26 @@ const Container = styled.div`
 
   box-sizing: border-box;
 
-  width: 100%;
+  width: 90%;
 
   max-height: 50px;
   height: 50px;
 
   border-radius: 10px;
+
+  & + & {
+    margin-top: 12px;
+  }
 `;
 
 const Nickname = styled.div`
+  width: 30%;
   display: flex;
 
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+
+  box-sizing: border-box;
 
   flex: none;
   color: white;
@@ -74,25 +91,71 @@ const Nickname = styled.div`
     width: 32px;
     height: 32px;
   }
+
+  & > div {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 24px;
+  }
+
+  .info-container {
+    box-sizing : border-box;
+    margin-left: 6px;
+  }
+  .nickname-txt {
+    font-weight: bold;
+    font-size : 0.8rem;
+  }
+
+  .job-txt {
+    margin-top:3px;
+  }
 `;
 
 const HellCleared = styled.div`
+  width: 40%;
   display: flex;
 
-  margin-left: auto;
+  max-height:32px;
+  height:32px;
 
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 
-  .title {
-    display: inline-block;
-    font-size: 0.9rem;
+  .content {
+    width:30px;
+
+    box-sizing : border-box;
+
+    margin-left: 12px;
+
     color: white;
-    width: 120px;
+    font-size: 0.5rem;
+  }
+  & img {
+    height:32px;
   }
 
-  .content {
-    color: white;
-    font-size: 0.8rem;
+  &>div {
+    display : flex;
+
+    justify-content: center;
+    align-items: center;
   }
 `;
+
+const Tripod = styled.div`
+  width: 10%;
+
+  &> div {
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    opacity:60%;
+  }
+`
