@@ -12,7 +12,6 @@ export default function HellUser() {
       setUsers(data);
     });
   }, []);
-
   return (
     <Container>
       <Rank>
@@ -142,10 +141,12 @@ const Rank = styled.div`
     width: 100px;
     height: 30px;
 
-    background-color: white;
+    background-color: rgb(80,80,80);
 
-    border: none;
+    border: 1px solid white;
     border-radius: 10px;
+
+    color: white;
 
     &:hover {
       cursor: pointer;

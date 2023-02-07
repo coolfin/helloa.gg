@@ -15,7 +15,7 @@ export default function UserDetail({
     <Container className={className}>
       <Nickname>
         <div className="rank-txt">
-          <strong>{index + 1}th</strong>
+          <strong>{index + 1}</strong>th
         </div>
         <div>
           <img className="job_img" src={"/class_icons/" + job + ".png"} />
@@ -44,7 +44,7 @@ export default function UserDetail({
 
 
       <Tripod>
-        <div>조율의 서</div>
+        <img src="" />
       </Tripod>
 
     </Container>
@@ -150,8 +150,6 @@ const HellCleared = styled.div`
 const Tripod = styled.div`
   width: 10%;
 
-  &> div {
-  }
 
   &:hover {
     cursor: pointer;

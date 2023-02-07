@@ -1,20 +1,20 @@
-import React, { Fragment } from 'react';
-import { useState } from 'react';
+import React, { Fragment } from "react";
+import { useState } from "react";
 
 //Util
-import Modal from './components/util/Modal/Modal';
-import PublicRoute from './components/PublicRoute';
-import Nav from './components/Nav';
-import Tripod from './components/pages/Tripod';
+import Modal from "./components/util/Modal/Modal";
+import PublicRoute from "./components/PublicRoute";
+import Nav from "./components/Nav";
+import Tripod from "./components/pages/Tripod";
 
 //Pages
-import Main from './components/pages/Main';
-import MyPage from './components/pages/MyPage';
+import Main from "./components/pages/Main";
+import MyPage from "./components/pages/MyPage";
 
 //Css
-import styled from 'styled-components';
-import { Routes, Route, Router } from 'react-router-dom';
-import './App.css';
+import styled from "styled-components";
+import { Routes, Route, Router } from "react-router-dom";
+import "./App.css";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -25,6 +25,7 @@ function App() {
   };
   return (
     <Container>
+      <Nav />
       <Routes>
         <Route element={<Main />} path="/" />
         <Route element={<Tripod />} path="/tripod" />
@@ -55,18 +56,19 @@ const ClearBtn = styled.button`
   max-height: 40px;
   height: 40px;
 
+  z-dinex: 990;
+
   right: 3%;
   bottom: 5%;
 
-  background-color: white;
-
-  z-dinex: 998;
-
-  border: none;
+  background-color: rgb(13, 19, 19);
+  border : .5px solid white;
   border-radius: 10px;
+
+  color:white;
 
   &:hover {
     cursor: pointer;
-    background-color: gray;
+    opacity: 60%;
   }
 `;
