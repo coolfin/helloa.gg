@@ -1,0 +1,7 @@
+.tripod-content {}
+
+.skill-icon {
+    /*스킬 이미지*/
+    width: 32px;
+    object-fit: cover;
+}

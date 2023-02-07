@@ -10,26 +10,26 @@ export default function Tripod() {
   const [curjob, setCurJob] = useState("워로드");
   const [curjobid, setCurJobId] = useState(1);
 
-  const [curskill, setCurSkill] = useState([0,0]);
-  
+  const [curskill, setCurSkill] = useState([0, 0]);
+
   useEffect(() => {
-    console.log("eff:",curskill)
-  }, [curskill])
+    console.log("eff:", curskill);
+  }, [curskill]);
 
   const handleJobSelect = (value, id) => {
     setCurJob(value);
     setCurJobId(id);
 
-    {curjobid !== id && setCurSkill([0,0])}
-  }
+    {
+      curjobid !== id && setCurSkill([0, 0]);
+    }
+  };
 
-  const handleSkillSelect = (sk,lv, id)  => {
-    setCurSkill([sk,lv]);
-  }
+  const handleSkillSelect = (sk, lv, id) => {
+    setCurSkill([sk, lv]);
+  };
 
-  const handleTpSelect = () => {
-
-  }
+  const handleTpSelect = () => {};
   // useEffect(() => {
   //   console.log(curjob);//상태값 변경 시 제대로 state가 변경되는지 확인
   // }, [curjob]);
@@ -37,15 +37,19 @@ export default function Tripod() {
   return (
     <Container>
       <InnerContainer>
-        <JobTripod onJobSelected={handleJobSelect}/>
-      </InnerContainer>
-      
-      <InnerContainer>
-        <SkillForm onSkillSelected = {handleSkillSelect} curId = {curjobid}/>
+        <JobTripod onJobSelected={handleJobSelect} />
       </InnerContainer>
 
       <InnerContainer>
-        <TripodForm onTripodSelected ={handleTpSelect} curId = {curjobid} curSkill = {curskill} />
+        <SkillForm onSkillSelected={handleSkillSelect} curId={curjobid} />
+      </InnerContainer>
+
+      <InnerContainer>
+        <TripodForm
+          onTripodSelected={handleTpSelect}
+          curId={curjobid}
+          curSkill={curskill}
+        />
       </InnerContainer>
     </Container>
   );
@@ -57,7 +61,7 @@ const Container = styled.div`
 
   display: flex;
 
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 
   color: white;
@@ -67,4 +71,16 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
+  width: 32%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 `;

@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import styled from "styled-components";
 import { PlayerTripod } from "./playertp";
+import "../util.css";
 
 export default function TripodForm({ onTripodSelected, curSkill, curId }) {
   const tpsets = useMemo(
@@ -26,44 +27,66 @@ export default function TripodForm({ onTripodSelected, curSkill, curId }) {
         }}
       >
         <TripodInner>
-          <legend>1단계</legend>
           {tpsets?.map(
             (v, index) =>
               index <= 2 && (
-                <TripodLabel>
+                <TripodLabel
+                  key={"lv1__" + index}
+                  style={{
+                    backgroundImage: `URL('/class_skills/gunlancer/tripods/${v[0]}.png')`,
+                  }}
+                >
                   <TripodBtn type="radio" name="first" value={v[0]} />
-                  <div>{v[0]}</div>
-                  <div>{v[1]}</div>
+                  <TripodContent>
+                    <div>{v[0]}</div>
+                    <div className="tripod-content">{v[1]}</div>
+                  </TripodContent>
                 </TripodLabel>
               )
           )}
         </TripodInner>
 
         <TripodInner>
-          <legend>2단계</legend>
           {tpsets?.map(
             (v, index) =>
               3 <= index &&
               index <= 5 && (
-                <TripodLabel>
-                  <TripodBtn type="radio" name="second" value={v[0]} />
-                  <div>{v[0]}</div>
-                  <div>{v[1]}</div>
+                <TripodLabel
+                  key={"lv2__" + index}
+                  style={{
+                    backgroundImage: `URL('/class_skills/gunlancer/tripods/${v[0]}.png')`,
+                  }}
+                >
+                  <TripodBtn
+                    type="radio"
+                    name="second"
+                    value={v[0]}
+                  />
+                  <TripodContent>
+                    <div>{v[0]}</div>
+                    <div className="tripod-content">{v[1]}</div>
+                  </TripodContent>
                 </TripodLabel>
               )
           )}
         </TripodInner>
 
         <TripodInner>
-          <legend>3단계</legend>
           {tpsets?.map(
             (v, index) =>
               6 <= index &&
               index <= 7 && (
-                <TripodLabel>
-                  <TripodBtn type="radio" name="third" value={v[0]} />
-                  <div>{v[0]}</div>
-                  <div>{v[1]}</div>
+                <TripodLabel
+                  key={"lv3__" + index}
+                  style={{
+                    backgroundImage: `URL('/class_skills/gunlancer/tripods/${v[0]}.png')`,
+                  }}
+                >
+                  <TripodBtn type="radio" name="third" value={v[0]}/>
+                  <TripodContent>
+                    <div>{v[0]}</div>
+                    <div className="tripod-content">{v[1]}</div>
+                  </TripodContent>
                 </TripodLabel>
               )
           )}
@@ -81,12 +104,99 @@ const TripodContainer = styled.div`
   align-items: center;
   flex-direction: column;
   list-decoration: none;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 `;
 
-const TripodInner = styled.fieldset``;
+const TripodInner = styled.fieldset`
+  max-width: 200px;
+  width: 200px;
 
-const TripodBtn = styled.input``;
+  max-height: 150px;
+  height: 150px;
 
-const TripodLabel = styled.label``;
+  overflow: scroll;
+
+  display: flex;
+
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const TripodBtn = styled.input`
+  appearance: none;
+  display:none;
+`;
+
+const TripodContent = styled.div`
+  position: absolute;
+
+  max-width: 300px;
+  width: 300px;
+
+  max-height: 80px;
+  height: 80px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+
+  color: black;
+
+  background-color: white;
+
+  z-index: -1;
+
+  opacity: 0;
+  transition: all ease 0.2s;
+  transition-timing-function: ease-in;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  margin-top: 40px;
+
+  & div:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  & div.tripod-content {
+    font-weight: normal;
+  }
+  ${TripodBtn}:hover + & {
+    opacity: 1;
+    z-index: 10;
+  }
+`;
+
+const TripodLabel = styled.label`
+  width: 32px;
+  height: 32px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  border: 1px solid black;
+  border-radius: 50%;
+
+  &:hover {
+    cursor: pointer;
+    opacity:80%;
+  }
+  & input[type="radio"]:checked {
+    width:100px;
+  }
+`;
 
 const ShareBtn = styled.button``;
