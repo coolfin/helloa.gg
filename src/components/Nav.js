@@ -46,10 +46,12 @@ export default function Nav() {
         placeholder="유저 명을 검색해주세요."
       />
 
+
       <img
         alt="User logged"
         src="http://via.placeholder.com/40x40"
         className="nav__avatar"
+        onClick={() => window.location.href="/tripod"}
       />
     </Container>
   );

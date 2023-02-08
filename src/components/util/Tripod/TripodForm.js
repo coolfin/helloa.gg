@@ -57,11 +57,8 @@ export default function TripodForm({ onTripodSelected, curSkill, curId }) {
                     backgroundImage: `URL('/class_skills/gunlancer/tripods/${v[0]}.png')`,
                   }}
                 >
-                  <TripodBtn
-                    type="radio"
-                    name="second"
-                    value={v[0]}
-                  />
+                  <TripodBtn type="radio" name="second" value={v[0]} />
+
                   <TripodContent>
                     <div>{v[0]}</div>
                     <div className="tripod-content">{v[1]}</div>
@@ -82,8 +79,10 @@ export default function TripodForm({ onTripodSelected, curSkill, curId }) {
                     backgroundImage: `URL('/class_skills/gunlancer/tripods/${v[0]}.png')`,
                   }}
                 >
-                  <TripodBtn type="radio" name="third" value={v[0]}/>
+                  <TripodBtn type="radio" name="third" value={v[0]} />
+
                   <TripodContent>
+                    <label></label>
                     <div>{v[0]}</div>
                     <div className="tripod-content">{v[1]}</div>
                   </TripodContent>
@@ -125,10 +124,7 @@ const TripodInner = styled.fieldset`
   align-items: center;
 `;
 
-const TripodBtn = styled.input`
-  appearance: none;
-  display:none;
-`;
+const TripodBtn = styled.input``;
 
 const TripodContent = styled.div`
   position: absolute;
@@ -165,7 +161,7 @@ const TripodContent = styled.div`
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 
-  margin-top: 40px;
+  margin-top: 20px;
 
   & div:not(:last-child) {
     margin-bottom: 1rem;
@@ -186,16 +182,13 @@ const TripodLabel = styled.label`
 
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 
   border: 1px solid black;
   border-radius: 50%;
 
   &:hover {
     cursor: pointer;
-    opacity:80%;
-  }
-  & input[type="radio"]:checked {
-    width:100px;
   }
 `;
 
