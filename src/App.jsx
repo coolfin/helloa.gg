@@ -5,19 +5,22 @@ import { useState } from "react";
 import Modal from "./components/util/Modal/Modal";
 import PublicRoute from "./components/PublicRoute";
 import Nav from "./components/Nav";
-import Tripod from "./components/pages/Tripod";
 
 //Pages
 import Main from "./components/pages/Main";
+import Login from "./components/pages/Login";
+import Tripod from "./components/pages/Tripod";
 import MyPage from "./components/pages/MyPage";
 
 //Css
 import styled from "styled-components";
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route, Router, Navigate, useNavigate } from "react-router-dom";
 import "./App.css";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const isAuthor = sessionStorage.getItem("isAuthor");
+  const navigate = useNavigate();
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => {
@@ -26,11 +29,15 @@ function App() {
   return (
     <Container>
       <Nav />
+      {!isAuthor ?navigate('/login') : navigate('/')}
       <Routes>
         <Route element={<Main />} path="/" />
         <Route element={<Tripod />} path="/tripod" />
         {/* <PrivateRoute component={MyPage} path="/mypage" exact /> */}
+
+        <Route element={<Login />} path="/login"/>
       </Routes>
+      
 
       <ClearBtn onClick={handleOpenModal}>클리어 인증하기</ClearBtn>
       {showModal && <Modal closeModal={handleCloseModal} />}

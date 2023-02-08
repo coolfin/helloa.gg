@@ -124,7 +124,9 @@ const TripodInner = styled.fieldset`
   align-items: center;
 `;
 
-const TripodBtn = styled.input``;
+const TripodBtn = styled.input`
+  display:none;
+`;
 
 const TripodContent = styled.div`
   position: absolute;
@@ -161,7 +163,7 @@ const TripodContent = styled.div`
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 
-  margin-top: 20px;
+  margin-top: 40px;
 
   & div:not(:last-child) {
     margin-bottom: 1rem;
@@ -189,6 +191,12 @@ const TripodLabel = styled.label`
 
   &:hover {
     cursor: pointer;
+  }
+
+  &:has(input[type="radio"]:checked) {
+    border : 1px solid white;
+    box-shadow: 0 0 8px 0 rgba(255,255,255,0.5);
+    opacity: 1;
   }
 `;
 

@@ -3,8 +3,7 @@
     width: 32px;
     object-fit: cover;
 }
-
-input[type="radio"] { 
+/* input[type="radio"] {
     appearance: none;
     background-color: transparent;
     margin: 0;
@@ -12,7 +11,7 @@ input[type="radio"] {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    transform: translate(.5%,.5%);
+    transform: translate(.5%, .5%);
 
     box-sizing: border-box;
 }
@@ -20,4 +19,4 @@ input[type="radio"] {
 input[type="radio"]:checked {
     border: 0.15em solid white;
     opacity: 80%;
-}
+} */
