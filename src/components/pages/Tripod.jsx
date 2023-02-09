@@ -36,6 +36,7 @@ export default function Tripod() {
 
   return (
     <Container>
+      {window.sessionStorage.getItem("id")}
       <InnerContainer>
         <JobTripod onJobSelected={handleJobSelect} />
       </InnerContainer>
