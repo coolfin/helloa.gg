@@ -7,20 +7,20 @@ export default function Nav() {
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      console.log("window.scrollY", window.scrollY);
-      if (window.scrollY > 30) {
-        setShow(true);
-      } else {
-        setShow(false);
-      }
-    });
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     console.log("window.scrollY", window.scrollY);
+  //     if (window.scrollY > 30) {
+  //       setShow(true);
+  //     } else {
+  //       setShow(false);
+  //     }
+  //   });
 
-    return () => {
-      window.removeEventListener("scroll", () => {});
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", () => {});
+  //   };
+  // }, []);
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
@@ -28,8 +28,7 @@ export default function Nav() {
   };
 
   return (
-    <Container className={`nav ${show && "nav__black"} `}>
-
+    <Container className={`nav`}>
       <img
         alt="Helloa logo"
         src="http://via.placeholder.com/80x40"
@@ -55,47 +54,17 @@ export default function Nav() {
 }
 
 const Container = styled.nav`
-  position: fixed;
-  top: 0;
   width: 100%;
-  height: 30px;
+  height: 4.6%;
 
   z-index: 100;
 
-  padding: 20px;
+  box-sizing: border-box;
+
+  background-color: skyblue;
 
   display: flex;
 
   justify-content: space-between;
   align-items: center;
-
-  transition-timing-function: ease-in;
-  transition: all 0.3s;
-
-  &.nav__black {
-    background-color: gray;
-  }
-
-  &>img.nav__logo {
-    position: fixed;
-    left: 40px;
-    width: 80px;
-    object-fit: contain;
-  }
-
-  &>img.nav__avatar {
-    position: fixed;
-    right: 40px;
-    width: 30px;
-    object-fit: contain;
-  }
-
-  &>img.nav__input {
-    position: fixed;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    border-radius: 5px;
-    padding: 5px;
-    border: 1px solid white;
-  }
 `;

@@ -4,9 +4,11 @@ import { useState } from "react";
 //Util
 import Modal from "./components/util/Modal/Modal";
 import Nav from "./components/Nav";
+import Header from "./components/Header";
 
 //Pages
 import Main from "./components/pages/Main";
+import LeaderBoard from "./components/pages/LeaderBoard";
 import Login from "./components/pages/Login";
 import Tripod from "./components/pages/Tripod";
 import MyPage from "./components/pages/MyPage";
@@ -28,11 +30,11 @@ function App() {
   };
   return (
     <Container>
-      <Nav />
       {/* {isAuthor ? navigate("/login") : navigate("/")} */}
 
       <Routes>
         <Route element={<Main />} path="/" exact />
+        <Route element={<LeaderBoard />} path="/leaderboard" />
         <Route element={<Tripod />} path="/tripod" />
         <Route element={<MyPage />} path="/mypage" />
 
@@ -50,10 +52,14 @@ function App() {
 export default App;
 
 const Container = styled.div`
-  height: 110vh;
+  width: 100vw;
+  height: 100vh;
+
   display: flex;
+
   justify-content: center;
   align-items: center;
+
 `;
 
 const ClearBtn = styled.button`
