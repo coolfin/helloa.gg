@@ -1,38 +1,47 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import awsconfig from "../../service/awsconfig";
+
+import { Amplify, Auth } from "aws-amplify";
+import { Authenticator, Button } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+
 import styled from "styled-components";
+
+Amplify.configure(awsconfig);
 
 export default function Login() {
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate("");
 
-  const  handleSubmit = () => {
-    // auth.login(userId, password).then((res) => {
-    //   console.log(res);
-    //   if (res.resultcode === 1) {
-    //     history.push("/");
-    //   }
-    // });
-    {
-      userid && window.sessionStorage.setItem("id", userid);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await Auth.signIn(userid, password);
+      alert("로그인 성공!");
+    } catch (event) {
+      console.log(event);
     }
-    {
-      password && window.sessionStorage.setItem("password", password);
-    }
-  }
+  };
 
-  const handleRegister = () => {
-    navigate('/register');
-  }
+  const handleRegister = (e) => {
+    navigate("/register");
+  };
 
   return (
     <Container>
-      <input value={userid} onChange={(e) => setUserId(e.target.value)} />
-      <input value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleSubmit}>로그인</button>
-      <button onClick={handleRegister}>회원가입</button>
+      <form onSubmit={handleSubmit}>
+        <input value={userid} onChange={(e) => setUserId(e.target.value)} />
+        <input
+          value={password}
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input type="submit" value="로그인" />
+        <button onClick={handleRegister}>회원가입</button>
+      </form>
     </Container>
   );
 }

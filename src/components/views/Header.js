@@ -31,7 +31,7 @@ export default function Header() {
             alt="User logged"
             src="/img/arkana.png"
             className="nav__avatar"
-            onClick={() => (window.location.href = "/tripod")}
+            onClick={() => (window.location.href = "/login")}
           />
           <div><strong>쿨핀</strong> 님</div>
 

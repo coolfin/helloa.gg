@@ -3,8 +3,6 @@ import { useState } from "react";
 
 //Util
 import Modal from "./components/util/Modal/Modal";
-import Nav from "./components/Nav";
-import Header from "./components/Header";
 
 //Pages
 import Main from "./components/pages/Main";
@@ -18,6 +16,7 @@ import Register from "./components/pages/Register";
 import styled from "styled-components";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import "./App.css";
+import NotFound from "./components/pages/NotFound";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -41,6 +40,9 @@ function App() {
       
         <Route element={<Login />} path="/login"/> 
         <Route element={<Register />} path="/register" />
+
+
+        <Route element={<NotFound/>}/>
       </Routes>
 
       <ClearBtn onClick={handleOpenModal}>클리어 인증하기</ClearBtn>

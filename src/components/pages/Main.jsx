@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Routes, useNavigate } from "react-router-dom";
 
-import Header from "../Header";
-import Nav from "../Nav";
+import Header from "../views/Header";
+import Nav from "../views/Nav";
 
 import styled from "styled-components";
 
