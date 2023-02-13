@@ -18,7 +18,10 @@ export default function Main() {
           navigate("/leaderboard");
         }}
       >
-        abrel
+        <NewBossTextContainer>
+          <div></div>
+          <div></div>
+        </NewBossTextContainer>
       </NewLB>
       <CurLB>
         <VtLB
@@ -26,21 +29,30 @@ export default function Main() {
             navigate("/leaderboard");
           }}
         >
-          valtan
+          <CurBossTextContainer>
+            <div></div>
+            <div></div>
+          </CurBossTextContainer>
         </VtLB>
         <VyaLB
           onClick={() => {
             navigate("/leaderboard");
           }}
         >
-          vya
+          <CurBossTextContainer>
+            <div></div>
+            <div></div>
+          </CurBossTextContainer>
         </VyaLB>
         <KKsatonLB
           onClick={() => {
             navigate("/leaderboard");
           }}
         >
-          saton
+          <CurBossTextContainer>
+            <div></div>
+            <div></div>
+          </CurBossTextContainer>
         </KKsatonLB>
       </CurLB>
     </Container>
@@ -60,6 +72,8 @@ const Container = styled.div`
 
   background-color: #14171f;
 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
   @media screen and (max-width: 500px) {
     width: 100%;
   }
@@ -69,7 +83,21 @@ const NewLB = styled.div`
   width: 68.3%;
   height: 42.3%;
 
-  background-color: gray;
+  display: flex;
+
+  margin-top: 8.1%;
+
+  background-image: url("/img/abrel.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  border-radius: 30px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 90%;
+  }
 `;
 
 const CurLB = styled.div`
@@ -81,7 +109,7 @@ const CurLB = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  background-color: blue;
+  margin-top: 6.1%;
 
   & > div {
     width: 31.7%;
@@ -92,6 +120,11 @@ const CurLB = styled.div`
 
   & > div + div {
     margin-left: 2.1%;
+  }
+
+  & > div:hover {
+    cursor: pointer;
+    opacity: 90%;
   }
 
   @media screen and (max-width: 500px) {
@@ -111,6 +144,49 @@ const CurLB = styled.div`
   }
 `;
 
-const VtLB = styled.div``;
-const VyaLB = styled.div``;
-const KKsatonLB = styled.div``;
+const VtLB = styled.div`
+  background-image: url("/img/valtan.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  border-radius: 30px;
+
+  @media screen and (max-width: 500px) {
+    background-position: 80% 40%;
+  }
+`;
+const VyaLB = styled.div`
+  background-image: url("/img/vyakiss.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  border-radius: 30px;
+
+  @media screen and (max-width: 500px) {
+    background-position: left 40%;
+  }
+`;
+const KKsatonLB = styled.div`
+  background-image: url("/img/kksaton.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  border-radius: 30px;
+
+  @media screen and (max-width: 500px) {
+    background-position: center 40%;
+  }
+`;
+
+const NewBossTextContainer = styled.div`
+  display:flex;
+
+  justify-content: 
+  align-items: flex-end;
+
+  color:white;
+`;
+const CurBossTextContainer = styled.div``;

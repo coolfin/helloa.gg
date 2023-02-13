@@ -8,11 +8,11 @@ export default function Nav() {
   return (
     <Container>
         <ul>
-          <MenuList>LeaderBoard</MenuList>
-          <MenuList>Menu1</MenuList>
-          <MenuList>Menu2</MenuList>
-          <MenuList>Menu3</MenuList>
-          <MenuList>Menu4</MenuList>
+          <MenuList onClick={() => {navigate('/leaderboard');}}>리더보드</MenuList>
+          <MenuList onClick={() => {navigate('/tripod');}}>조율의 서</MenuList>
+          <MenuList onClick={() => {navigate('/');}}>게임도우미</MenuList>
+          <MenuList onClick={() => {navigate('/');}}>마이페이지</MenuList>
+          <MenuList onClick={() => {navigate('/');}}>클리어 인증</MenuList>
         </ul>
 
     </Container>
@@ -66,4 +66,9 @@ const MenuList = styled.li`
   font-weight: bold;
 
   border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+    opacity:70%;
+  }
 `;
