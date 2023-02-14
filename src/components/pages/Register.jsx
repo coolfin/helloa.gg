@@ -5,9 +5,11 @@ import awsconfig from "../../service/awsconfig";
 
 import { Amplify, Auth } from "aws-amplify";
 import { Authenticator, Button } from "@aws-amplify/ui-react";
+
 import "@aws-amplify/ui-react/styles.css";
 
 Amplify.configure(awsconfig);
+
 export default function Register() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +30,7 @@ export default function Register() {
         },
       });
       console.log(user);
+      alert(username+"님, 가입이 완료되었습니다!");
       navigate('/login')
     } catch (error) {
       console.log("error signing up:", error);

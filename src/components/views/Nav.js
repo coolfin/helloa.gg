@@ -33,7 +33,7 @@ const Container = styled.div`
   background-color: #1d1f2c;
 
   & > ul {
-    width: 68.3%;
+    width: 82%;
     height: 100%;
 
     margin: 0;

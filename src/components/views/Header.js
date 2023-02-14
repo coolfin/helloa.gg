@@ -1,12 +1,53 @@
-import React from "react";
-import { IoMdArrowDropdown } from "react-icons/io";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import DDLogin from "../util/Dropdown/DDLogin";
+
+import awsconfig from "../../service/awsconfig";
+
+import { Amplify, Auth } from "aws-amplify";
+import { Authenticator, Button } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 
 import styled from "styled-components";
 
+Amplify.configure(awsconfig);
+
 export default function Header() {
   const navigate = useNavigate();
-  const isAuthorized = true;
+  const [view, setView] = useState();
+
+  let nickname = window.sessionStorage.getItem("nickname");
+
+  useEffect(() => {
+    try {
+      Auth.currentAuthenticatedUser({
+        bypassCache: true, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+      })
+        .then((user) => {
+          console.log(
+            `Load additional settings for user: ${JSON.stringify(
+              user.attributes.name
+            )}`
+          );
+          window.sessionStorage.setItem("nickname", user.attributes.name);
+          // TBD
+          navigate("/");
+        })
+        .catch((err) => console.log("hi", err));
+    } catch (e) {
+      console.log("hi2", e);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("닉네임: ", nickname);
+  }, [nickname]);
+
+  const handleView = () => {
+    setView(!view);
+  };
+
   return (
     <Container>
       <div>
@@ -26,20 +67,34 @@ export default function Header() {
           </div>
         </LogoContainer>
 
-        <LoginContainer>
-          <LoggedImg
-            alt="User logged"
-            src="/img/arkana.png"
-            className="nav__avatar"
-            onClick={() => (window.location.href = "/login")}
-          />
-          <div><strong>쿨핀</strong> 님</div>
+        {nickname ? (
+          <LoginContainer>
+            <LoggedImg
+              alt="User logged"
+              src="/img/arkana.png" //캐릭터 사진 가져오기 
+              className="nav__avatar"
+              onClick={() => navigate("/login")}
+            />
 
-          <LoginDropdown
-            alt="User Dropdown"
-            src="http://via.placeholder.com/25x25"
-          ></LoginDropdown>
-        </LoginContainer>
+            <NickNameContainer>
+              <strong>{nickname}</strong> 님
+            </NickNameContainer>
+            {view ? (
+              <DropDownArrow onClick={handleView} />
+            ) : (
+              <DropDownArrow className="reversed" onClick={handleView} />
+            )}
+            {view && <DDLogin />}
+          </LoginContainer>
+        ) : (
+          <BfLoginContainer
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            <strong>로그인</strong>
+          </BfLoginContainer>
+        )}
       </div>
     </Container>
   );
@@ -58,8 +113,10 @@ const Container = styled.div`
 
   background-color: #2e3341;
 
+  box-shadow: 0 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
   & > div {
-    width: 68.3%;
+    width: 89.2%;
     height: 100%;
 
     display: flex;
@@ -72,7 +129,19 @@ const Container = styled.div`
     display: none;
   }
 `;
+const BfLoginContainer = styled.div`
+  width: 50%;
+  height: 100%;
 
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  color: white;
+
+  font-size: 0.5rem;
+`;
 const LogoContainer = styled.div`
   width: 50%;
   height: 100%;
@@ -109,16 +178,14 @@ const LoginContainer = styled.div`
   height: 100%;
 
   display: flex;
+  position: relative;
 
   justify-content: flex-end;
   align-items: center;
 
   color: white;
 
-
   & > div {
-    margin:0 1%;
-
     font-size: 0.5rem;
   }
 `;
@@ -127,14 +194,44 @@ const LoggedImg = styled.img`
   width: 6.1%;
   height: 50%;
 
-  border-radius : 50%;
+  border-radius: 50%;
 
   object-fit: contain;
+
+  margin: 0 1%;
 `;
 
-const LoginDropdown = styled.img`
-  width: 6.1%;
-  height: 50%;
+const NickNameContainer = styled.div`
+  width: 14.6%;
+  height: 100%;
 
-  object-fit: contain;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  & strong {
+    margin-right: 5%;
+  }
+`;
+
+const DropDownArrow = styled.div`
+  width: 2.4%;
+  height: 20%;
+
+  opacity: 70%;
+
+  background-image: url("/icon/dropdown.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  box-sizing: border-box;
+
+  transform: rotate(180deg);
+  &.reversed {
+    transform: rotate(0deg);
+  }
 `;

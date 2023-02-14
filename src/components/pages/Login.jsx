@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import awsconfig from "../../service/awsconfig";
@@ -21,8 +21,12 @@ export default function Login() {
     try {
       await Auth.signIn(userid, password);
       alert("로그인 성공!");
-    } catch (event) {
-      console.log(event);
+
+      window.sessionStorage.setItem("userid", userid);
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -32,7 +36,14 @@ export default function Login() {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <LogoContainer>
+        <LogoImg alt="Helloa logo" src="/img/logo_lostark.jpeg" />
+        <LogoText>
+          <strong>Helloa</strong>.gg
+        </LogoText>
+      </LogoContainer>
+
+      <LoginContainer onSubmit={handleSubmit}>
         <input value={userid} onChange={(e) => setUserId(e.target.value)} />
         <input
           value={password}
@@ -41,22 +52,81 @@ export default function Login() {
         />
         <input type="submit" value="로그인" />
         <button onClick={handleRegister}>회원가입</button>
-      </form>
+      </LoginContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
-  width: 60%;
-  height: 80vh;
+  width: 20.83%;
+  height: 74.07%;
 
   display: flex;
 
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 
   flex-direction: column;
 
-  border-right: 1px solid gray;
-  border-left: 1px solid gray;
+  box-sizing: border-box;
+
+  border-radius: 20px;
+
+  background-color: rgba(20, 23, 31, 0.7);
+
+
+  @media screen and (max-width: 500px) {
+    justify-content: flex-start;
+  }
 `;
+
+const LogoContainer = styled.div`
+  width: 100%;
+  height: 5.3%;
+
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 3.7%;
+  margin-bottom: 2.3%;
+
+  & > div {
+    margin-left: 1%;
+  }
+`;
+
+const LogoImg = styled.img`
+  width: 10.6%;
+  height: 100%;
+
+  object-fit: contain;
+`;
+
+const LogoText = styled.div`
+width: 46.6%;
+height: 100%;
+
+font-size: 100%;
+text-align: center;
+
+box-sizing: border-box;
+
+background-color: magenta;
+
+color: #8A8A8A;
+font-weight:bold;
+
+&>strong {
+  color: #FFF;
+}
+`;
+
+const LoginContainer = styled.form`
+  width: 85%;
+  height : 85%;
+
+  background-color: rgba(30,40,52,0.9);
+`

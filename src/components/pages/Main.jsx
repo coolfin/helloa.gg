@@ -13,7 +13,7 @@ export default function Main() {
     <Container>
       <Header />
       <Nav />
-      <NewLB
+      <NewLB //아브렐 
         onClick={() => {
           navigate("/leaderboard");
         }}
@@ -23,8 +23,9 @@ export default function Main() {
           <div></div>
         </NewBossTextContainer>
       </NewLB>
-      <CurLB>
-        <VtLB
+
+      <CurLB> 
+        <VtLB //이전 헬단장
           onClick={() => {
             navigate("/leaderboard");
           }}
@@ -60,7 +61,7 @@ export default function Main() {
 }
 
 const Container = styled.div`
-  width: 62.5%;
+  width: 52%;
   height: 100%;
 
   display: flex;
@@ -70,7 +71,7 @@ const Container = styled.div`
 
   flex-direction: column;
 
-  background-color: #14171f;
+  background-color: rgba(20,23,31,0.7);
 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
@@ -80,7 +81,7 @@ const Container = styled.div`
 `;
 
 const NewLB = styled.div`
-  width: 68.3%;
+  width: 82%;
   height: 42.3%;
 
   display: flex;
@@ -101,7 +102,7 @@ const NewLB = styled.div`
 `;
 
 const CurLB = styled.div`
-  width: 68.3%;
+  width: 82%;
   height: 18.5%;
 
   display: flex;
