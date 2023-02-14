@@ -62,7 +62,7 @@ export default function Login() {
               className={"input-txt " + (password && "white")}
               placeholder="비밀번호"
             />
-{/* 
+            {/* 
             <AutoLoginContainer>
               <div>자동로그인</div>
               <div>비밀번호 찾기</div>
@@ -165,20 +165,19 @@ const LoginContainer = styled.form`
   flex-direction: column;
 
   border-radius: 20px;
-  background-color:  rgba(30, 40, 52, 0.9);
+  background-color: rgba(30, 40, 52, 0.9);
 
   margin-top: 2.6%;
   padding-top: 5%;
 
   & > div {
     width: 100%;
-    height: 60%; 
+    height: 60%;
 
     display: flex;
 
     justify-content: center;
     align-items: center;
-
   }
 
   & > div > div {
@@ -194,7 +193,7 @@ const LoginContainer = styled.form`
   }
 
   & input.input-txt {
-    width: 88.2%;
+    width: 100%;
     height: 13.4%;
 
     background-color: inherit;
@@ -202,7 +201,7 @@ const LoginContainer = styled.form`
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 
-    color:white;
+    color: white;
 
     margin-bottom: 8.1%;
     &:focus {
@@ -210,11 +209,13 @@ const LoginContainer = styled.form`
     }
 
     &::placeholder {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
+
+      font-size: 0.7rem;
     }
 
     &.white {
-      border-bottom: 1px solid rgba(255,255,255,1);
+      border-bottom: 1px solid rgba(255, 255, 255, 1);
     }
   }
 
@@ -237,10 +238,10 @@ const LoginContainer = styled.form`
 
     color: white;
 
-    margin-bottom:6.7%;
+    margin-bottom: 6.7%;
 
     &:hover {
-      cursor:pointer;
+      cursor: pointer;
     }
   }
 `;
@@ -251,17 +252,16 @@ const AutoLoginContainer = styled.div`
 
   display: flex;
 
-  padding-bottom:10.5%;
-
+  padding-bottom: 10.5%;
 
   justify-content: space-between;
   align-items: center;
 
-  color:white;
-  font-weight:  bold;
+  color: white;
+  font-weight: bold;
   font-size: 0.7rem;
 
-  &>div:hover {
+  & > div:hover {
     cursor: pointer;
     text-decoration: underline;
   }
