@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Routes, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import Header from "../views/Header";
 import Nav from "../views/Nav";

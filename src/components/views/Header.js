@@ -6,7 +6,6 @@ import DDLogin from "../util/Dropdown/DDLogin";
 import awsconfig from "../../service/awsconfig";
 
 import { Amplify, Auth } from "aws-amplify";
-import { Authenticator, Button } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 import styled from "styled-components";
@@ -32,11 +31,12 @@ export default function Header() {
           );
           window.sessionStorage.setItem("nickname", user.attributes.name);
           // TBD
-          navigate("/");
+          navigate('/');
+          
         })
-        .catch((err) => console.log("hi", err));
+        .catch((err) => console.log("error1: ", err));
     } catch (e) {
-      console.log("hi2", e);
+      console.log("error2: ", e);
     }
   }, []);
 
@@ -68,21 +68,19 @@ export default function Header() {
         </LogoContainer>
 
         {nickname ? (
-          <LoginContainer>
+          <LoginContainer onClick={handleView}>
             <LoggedImg
               alt="User logged"
-              src="/img/arkana.png" //캐릭터 사진 가져오기 
-              className="nav__avatar"
-              onClick={() => navigate("/login")}
+              src="/img/arkana.png" //캐릭터 사진 가져오기}
             />
 
             <NickNameContainer>
               <strong>{nickname}</strong> 님
             </NickNameContainer>
             {view ? (
-              <DropDownArrow onClick={handleView} />
+              <DropDownArrow/>
             ) : (
-              <DropDownArrow className="reversed" onClick={handleView} />
+              <DropDownArrow className="reversed"/>
             )}
             {view && <DDLogin />}
           </LoginContainer>
@@ -141,6 +139,11 @@ const BfLoginContainer = styled.div`
   color: white;
 
   font-size: 0.5rem;
+
+  &:hover {
+    opacity: 80;
+    cursor: pointer;
+  }
 `;
 const LogoContainer = styled.div`
   width: 50%;
@@ -233,5 +236,9 @@ const DropDownArrow = styled.div`
   transform: rotate(180deg);
   &.reversed {
     transform: rotate(0deg);
+  }
+
+  &:hover {
+    cursor:pointer;
   }
 `;

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import awsconfig from "../../service/awsconfig";
 
 import { Amplify, Auth } from "aws-amplify";
-import { Authenticator, Button } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 import styled from "styled-components";
@@ -36,7 +35,11 @@ export default function Login() {
 
   return (
     <Container>
-      <LogoContainer>
+      <LogoContainer
+        onClick={() => {
+          navigate("/");
+        }}
+      >
         <LogoImg alt="Helloa logo" src="/img/logo_lostark.jpeg" />
         <LogoText>
           <strong>Helloa</strong>.gg
@@ -44,14 +47,34 @@ export default function Login() {
       </LogoContainer>
 
       <LoginContainer onSubmit={handleSubmit}>
-        <input value={userid} onChange={(e) => setUserId(e.target.value)} />
-        <input
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input type="submit" value="로그인" />
-        <button onClick={handleRegister}>회원가입</button>
+        <div>
+          <div>
+            <input
+              value={userid}
+              onChange={(e) => setUserId(e.target.value)}
+              className={"input-txt " + (userid && "white")}
+              placeholder="이메일"
+            />
+            <input
+              value={password}
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              className={"input-txt " + (password && "white")}
+              placeholder="비밀번호"
+            />
+{/* 
+            <AutoLoginContainer>
+              <div>자동로그인</div>
+              <div>비밀번호 찾기</div>
+            </AutoLoginContainer> */}
+
+            <input type="submit" value="로그인" className="input-btn" />
+
+            <button onClick={handleRegister} className="input-btn">
+              회원가입
+            </button>
+          </div>
+        </div>
       </LoginContainer>
     </Container>
   );
@@ -68,14 +91,12 @@ const Container = styled.div`
 
   flex-direction: column;
 
-  box-sizing: border-box;
-
   border-radius: 20px;
 
   background-color: rgba(20, 23, 31, 0.7);
 
-
   @media screen and (max-width: 500px) {
+    width: 82%;
     justify-content: flex-start;
   }
 `;
@@ -84,17 +105,23 @@ const LogoContainer = styled.div`
   width: 100%;
   height: 5.3%;
 
-
   display: flex;
 
   justify-content: center;
   align-items: center;
 
   margin-top: 3.7%;
-  margin-bottom: 2.3%;
 
   & > div {
     margin-left: 1%;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: none;
   }
 `;
 
@@ -102,31 +129,140 @@ const LogoImg = styled.img`
   width: 10.6%;
   height: 100%;
 
+  border-radius: 8.5px;
+
   object-fit: contain;
 `;
 
 const LogoText = styled.div`
-width: 46.6%;
-height: 100%;
+  width: 46.6%;
+  height: 100%;
 
-font-size: 100%;
-text-align: center;
+  font-size: 1.8rem;
 
-box-sizing: border-box;
+  display: flex;
 
-background-color: magenta;
+  justify-content: center;
+  align-items: center;
 
-color: #8A8A8A;
-font-weight:bold;
+  color: #8a8a8a;
+  font-weight: bold;
 
-&>strong {
-  color: #FFF;
-}
+  & > strong {
+    color: #fff;
+  }
 `;
 
 const LoginContainer = styled.form`
   width: 85%;
-  height : 85%;
+  height: 85%;
 
-  background-color: rgba(30,40,52,0.9);
-`
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  flex-direction: column;
+
+  border-radius: 20px;
+  background-color:  rgba(30, 40, 52, 0.9);
+
+  margin-top: 2.6%;
+  padding-top: 5%;
+
+  & > div {
+    width: 100%;
+    height: 60%; 
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  & > div > div {
+    width: 88.2%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+  }
+
+  & input.input-txt {
+    width: 88.2%;
+    height: 13.4%;
+
+    background-color: inherit;
+
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+
+    color:white;
+
+    margin-bottom: 8.1%;
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+
+    &.white {
+      border-bottom: 1px solid rgba(255,255,255,1);
+    }
+  }
+
+  & *.input-btn {
+    width: 100%;
+    height: 13%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 7.35px;
+
+    background-color: #161922;
+
+    font-size: 0.7rem;
+    font-weight: bold;
+
+    color: white;
+
+    margin-bottom:6.7%;
+
+    &:hover {
+      cursor:pointer;
+    }
+  }
+`;
+
+const AutoLoginContainer = styled.div`
+  width: 100%;
+  height: 50%;
+
+  display: flex;
+
+  padding-bottom:10.5%;
+
+
+  justify-content: space-between;
+  align-items: center;
+
+  color:white;
+  font-weight:  bold;
+  font-size: 0.7rem;
+
+  &>div:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
