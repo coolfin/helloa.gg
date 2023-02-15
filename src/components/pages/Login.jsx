@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import awsconfig from "../../service/awsconfig";
@@ -13,6 +13,9 @@ Amplify.configure(awsconfig);
 export default function Login() {
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
+
+  const [isLogged, setIsLogged] = useState(false);
+
   const navigate = useNavigate("");
 
   const handleSubmit = async (e) => {
@@ -20,14 +23,33 @@ export default function Login() {
     try {
       await Auth.signIn(userid, password);
       alert("로그인 성공!");
-
-      window.sessionStorage.setItem("userid", userid);
-
-      navigate("/");
+      setIsLogged(true);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    try {
+      Auth.currentAuthenticatedUser({
+        bypassCache: true, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+      })
+        .then((user) => {
+          console.log(
+            `Load additional settings for user: ${JSON.stringify(
+              user.attributes.name
+            )}`
+          );
+          window.sessionStorage.setItem("nickname", user.attributes.name);
+          window.sessionStorage.setItem("userid", user.attributes.userid);
+
+          navigate("/");
+        })
+        .catch((err) => console.log("error1: ", err));
+    } catch (e) {
+      console.log("error2: ", e);
+    }
+  }, [isLogged]);
 
   const handleRegister = (e) => {
     navigate("/register");

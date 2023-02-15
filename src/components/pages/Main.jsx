@@ -1,10 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import Header from "../views/Header";
 import Nav from "../views/Nav";
 
 import styled from "styled-components";
+import LeaderBoard from "./LeaderBoard";
 
 export default function Main() {
   const navigate = useNavigate();

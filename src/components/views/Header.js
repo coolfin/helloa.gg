@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import DDLogin from "../util/Dropdown/DDLogin";
 
@@ -16,32 +16,10 @@ export default function Header() {
   const navigate = useNavigate();
   const [view, setView] = useState();
 
-  let nickname = window.sessionStorage.getItem("nickname");
+  const nickname = window.sessionStorage.getItem('nickname');
 
   useEffect(() => {
-    try {
-      Auth.currentAuthenticatedUser({
-        bypassCache: true, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-      })
-        .then((user) => {
-          console.log(
-            `Load additional settings for user: ${JSON.stringify(
-              user.attributes.name
-            )}`
-          );
-          window.sessionStorage.setItem("nickname", user.attributes.name);
-          // TBD
-          navigate('/');
-          
-        })
-        .catch((err) => console.log("error1: ", err));
-    } catch (e) {
-      console.log("error2: ", e);
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log("닉네임: ", nickname);
+    console.log(nickname);
   }, [nickname]);
 
   const handleView = () => {

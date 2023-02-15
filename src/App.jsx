@@ -13,7 +13,7 @@ import Register from "./components/pages/Register";
 
 //Css
 import styled from "styled-components";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import "./App.css";
 import NotFound from "./components/pages/NotFound";
 
@@ -33,14 +33,13 @@ function App() {
         <Route element={<Main />} path="/" exact />
         <Route element={<LeaderBoard />} path="/leaderboard" />
         <Route element={<Tripod />} path="/tripod" />
-        <Route element={<MyPage />} path="/mypage" />
+        <Route element={<MyPage />} path="/mypage/:userId" />
 
       
         <Route element={<Login />} path="/login"/> 
         <Route element={<Register />} path="/register" />
 
-
-        <Route element={<NotFound/>}/>
+        <Route  element={<Navigate to ="/"></Navigate>} path="/*"/>
       </Routes>
 {/* 
       <ClearBtn onClick={handleOpenModal}>클리어 인증하기</ClearBtn>
