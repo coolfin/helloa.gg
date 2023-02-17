@@ -7,6 +7,7 @@ import { Amplify, Auth } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 
 import styled from "styled-components";
+import { CognitoIdentityProviderClient } from "@aws-sdk/client-cognito-identity-provider";
 
 Amplify.configure(awsconfig);
 
@@ -84,11 +85,11 @@ export default function Login() {
               className={"input-txt " + (password && "white")}
               placeholder="비밀번호"
             />
-            {/* 
+            
             <AutoLoginContainer>
               <div>자동로그인</div>
-              <div>비밀번호 찾기</div>
-            </AutoLoginContainer> */}
+              <div onClick={() => {navigate('/findpw');}}>비밀번호 찾기</div>
+            </AutoLoginContainer> 
 
             <input type="submit" value="로그인" className="input-btn" />
 
@@ -270,7 +271,7 @@ const LoginContainer = styled.form`
 
 const AutoLoginContainer = styled.div`
   width: 100%;
-  height: 50%;
+  height: auto;
 
   display: flex;
 

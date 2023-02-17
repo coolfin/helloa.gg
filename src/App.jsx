@@ -16,6 +16,7 @@ import styled from "styled-components";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import "./App.css";
 import NotFound from "./components/pages/NotFound";
+import Findpw from "./components/pages/Findpw";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -36,8 +37,10 @@ function App() {
         <Route element={<MyPage />} path="/mypage/:userId" />
 
       
+        
         <Route element={<Login />} path="/login"/> 
         <Route element={<Register />} path="/register" />
+        <Route element={<Findpw/>} path="/findpw" />
 
         <Route  element={<Navigate to ="/"></Navigate>} path="/*"/>
       </Routes>
