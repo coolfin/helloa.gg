@@ -225,7 +225,7 @@ const LoginContainer = styled.form`
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 
     color: white;
-
+    font-size: 0.7rem;
     margin-bottom: 8.1%;
     &:focus {
       outline: none;

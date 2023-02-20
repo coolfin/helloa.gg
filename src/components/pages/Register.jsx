@@ -12,6 +12,7 @@ Amplify.configure(awsconfig);
 
 export default function Register() {
   const [userid, setUserId] = useState("");
+  const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickName] = useState("");
   const [phone, setPhone] = useState("");
@@ -24,9 +25,47 @@ export default function Register() {
 
   // 유효성 검사
   const [ispassword, setIsPassword] = useState("");
+  const [isbtnclicked, setisBtnClicked] = useState(false);
 
   const navigate = useNavigate("");
 
+  async function resendConfirmationCode() {
+    try {
+      await Auth.resendSignUp(userid);
+      console.log("code resent succesfully");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function confirmSignUp() {
+    try {
+      await Auth.confirmSignUp(userid, code);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function singUp() {
+    try {
+      await Auth.signUp({
+        username: userid, //로아 닉네임
+        password, // 비밀번호
+        attributes: {
+          name: nickname, // optional
+        },
+        autoSignIn: {
+          // optional - enables auto sign in after user is confirmed
+          enabled: true,
+        },
+      });
+      alert(userid + "님, 가입이 완료되었습니다!");
+
+      navigate("/login");
+    } catch (error) {
+      console.log("error signing up:", error);
+    }
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -72,15 +111,33 @@ export default function Register() {
               }}
               placeholder="로스트아크 캐릭터 명"
             />
-            <div>
+            <div className="txt_with_btn">
               <input
                 value={userid}
                 className={"input-txt " + (userid && "white")}
                 onChange={(e) => setUserId(e.target.value)}
                 placeholder="이메일"
               />
-              <button>인증메일 발송</button>
+              <button
+                onClick={() => {
+                  setisBtnClicked(true);
+                }}
+              >
+                인증메일 발송
+              </button>
             </div>
+            {isbtnclicked && (
+              <div className="txt_with_btn">
+                <input
+                  value={code}
+                  className={"input-txt " + (userid && "white")}
+                  onChange={(e) => setCode(e.target.value)}
+                  placeholder="인증번호"
+                />
+                <button>인증하기</button>
+              </div>
+            )}
+
             <input
               value={phone}
               className={"input-txt " + (phone && "white")}
@@ -103,22 +160,23 @@ export default function Register() {
             <AgreeContainer>
               <div>
                 <input type="radio" />
-                전체 동의
+                <label>전체 동의</label>
               </div>
               <div>
                 <input type="radio" />
-                서비스 이용약관 동의(필수)
+                <label>서비스 이용약관 동의(필수)</label>
               </div>
               <div>
                 <input type="radio" />
-                개인정보 수집 및 이용 동의(필수)
-              </div>
-              <div>
-                <input type="radio" />만 14세 이상입니다 (필수)
+                <label>개인정보 수집 및 이용 동의(필수)</label>
               </div>
               <div>
                 <input type="radio" />
-                마케팅 수신 동의 (선택)
+                <label>만 14세 이상입니다 (필수)</label>
+              </div>
+              <div>
+                <input type="radio" />
+                <label>마케팅 수신 동의 (선택)</label>
               </div>
             </AgreeContainer>
 
@@ -253,60 +311,59 @@ const RegisterContainer = styled.div`
     align-items: center;
 
     flex-direction: column;
-  }
 
-  & > div > form > div {
-    width: 100%;
-    height: 8%;
+    &>div.txt_with_btn {
+      width: 100%;
+      height: 8%;
 
-    display: flex;
+      display: flex;
 
-    justify-content: space-between;
-    align-items: center;
+      justify-content: space-between;
+      align-items: center;
 
-    & button {
-      width: 34%;
-      height: 50%;
+      & button {
+        width: 34%;
+        height: 50%;
 
-      border: none;
-      border-radius: 7.5px;
+        border: none;
+        border-radius: 3px;
 
-      background-color: white;
+        background-color: white;
 
-      font-size: 0.6rem;
+        font-size: 0.6rem;
 
-      box-sizing: border-box;
+        box-sizing: border-box;
 
-      margin-left: 1%;
+        margin-left: 2%;
+      }
+
+      & input.input-txt {
+        width: 65%;
+        height: 100%;
+
+        background-color: inherit;
+
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+
+        color: white;
+
+        margin-bottom: 8.1%;
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.7rem;
+        }
+
+        &.white {
+          border-bottom: 1px solid rgba(255, 255, 255, 1);
+        }
+      }
     }
-
-    & input.input-txt {
-      width: 65%;
-      height: 100%;
-
-      background-color: inherit;
-
-      border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-
-      color: white;
-
-      margin-bottom: 8.1%;
-      &:focus {
-        outline: none;
-      }
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 0.7rem;
-      }
-
-      &.white {
-        border-bottom: 1px solid rgba(255, 255, 255, 1);
-      }
-    }
   }
-
   & input.input-txt {
     width: 100%;
     height: 8%;
@@ -317,6 +374,7 @@ const RegisterContainer = styled.div`
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 
     color: white;
+    font-size: 0.7rem;
 
     margin-bottom: 8.1%;
     &:focus {
@@ -352,8 +410,6 @@ const RegisterContainer = styled.div`
 
     color: rgba(255, 255, 255, 0.7);
 
-    margin-bottom: 6.7%;
-
     &:hover {
       cursor: pointer;
     }
@@ -366,26 +422,25 @@ const RegisterContainer = styled.div`
 
 const AgreeContainer = styled.div`
   width: 100%;
-  height: auto;
+  height: 30%;
 
-  padding-bottom: 10.5%;
+  padding-bottom: 5%;
 
   display: flex;
 
-  justify-content : space-around;
-
+  justify-content: space-between;
   flex-direction: column;
 
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: bold;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 
   &:has(input[type="radio"]:checked) {
     color: white;
   }
 
   & div {
-    width : 100%;
+    width: 100%;
     height: 20%;
   }
 
