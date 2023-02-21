@@ -25,47 +25,9 @@ export default function Register() {
 
   // 유효성 검사
   const [ispassword, setIsPassword] = useState("");
-  const [isbtnclicked, setisBtnClicked] = useState(false);
 
   const navigate = useNavigate("");
 
-  async function resendConfirmationCode() {
-    try {
-      await Auth.resendSignUp(userid);
-      console.log("code resent succesfully");
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function confirmSignUp() {
-    try {
-      await Auth.confirmSignUp(userid, code);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function singUp() {
-    try {
-      await Auth.signUp({
-        username: userid, //로아 닉네임
-        password, // 비밀번호
-        attributes: {
-          name: nickname, // optional
-        },
-        autoSignIn: {
-          // optional - enables auto sign in after user is confirmed
-          enabled: true,
-        },
-      });
-      alert(userid + "님, 가입이 완료되었습니다!");
-
-      navigate("/login");
-    } catch (error) {
-      console.log("error signing up:", error);
-    }
-  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -75,14 +37,9 @@ export default function Register() {
         attributes: {
           name: nickname, // optional
         },
-        autoSignIn: {
-          // optional - enables auto sign in after user is confirmed
-          enabled: true,
-        },
       });
-      alert(userid + "님, 가입이 완료되었습니다!");
-
-      navigate("/login");
+      alert(userid,"님, 이메일 코드를 입력해 주세요.");
+      navigate("/confirm", {state: userid});
     } catch (error) {
       console.log("error signing up:", error);
     }
@@ -111,33 +68,12 @@ export default function Register() {
               }}
               placeholder="로스트아크 캐릭터 명"
             />
-            <div className="txt_with_btn">
-              <input
-                value={userid}
-                className={"input-txt " + (userid && "white")}
-                onChange={(e) => setUserId(e.target.value)}
-                placeholder="이메일"
-              />
-              <button
-                onClick={() => {
-                  setisBtnClicked(true);
-                }}
-              >
-                인증메일 발송
-              </button>
-            </div>
-            {isbtnclicked && (
-              <div className="txt_with_btn">
-                <input
-                  value={code}
-                  className={"input-txt " + (userid && "white")}
-                  onChange={(e) => setCode(e.target.value)}
-                  placeholder="인증번호"
-                />
-                <button>인증하기</button>
-              </div>
-            )}
-
+            <input
+              value={userid}
+              className={"input-txt " + (userid && "white")}
+              onChange={(e) => setUserId(e.target.value)}
+              placeholder="이메일"
+            />
             <input
               value={phone}
               className={"input-txt " + (phone && "white")}
@@ -311,58 +247,6 @@ const RegisterContainer = styled.div`
     align-items: center;
 
     flex-direction: column;
-
-    &>div.txt_with_btn {
-      width: 100%;
-      height: 8%;
-
-      display: flex;
-
-      justify-content: space-between;
-      align-items: center;
-
-      & button {
-        width: 34%;
-        height: 50%;
-
-        border: none;
-        border-radius: 3px;
-
-        background-color: white;
-
-        font-size: 0.6rem;
-
-        box-sizing: border-box;
-
-        margin-left: 2%;
-      }
-
-      & input.input-txt {
-        width: 65%;
-        height: 100%;
-
-        background-color: inherit;
-
-        border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-
-        color: white;
-
-        margin-bottom: 8.1%;
-        &:focus {
-          outline: none;
-        }
-
-        &::placeholder {
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.7rem;
-        }
-
-        &.white {
-          border-bottom: 1px solid rgba(255, 255, 255, 1);
-        }
-      }
-    }
   }
   & input.input-txt {
     width: 100%;

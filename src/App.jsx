@@ -10,6 +10,7 @@ import Login from "./components/pages/Login";
 import Tripod from "./components/pages/Tripod";
 import MyPage from "./components/pages/MyPage";
 import Register from "./components/pages/Register";
+import ConfirmRegister from "./components/pages/ConfirmRegister";
 
 //Css
 import styled from "styled-components";
@@ -41,6 +42,7 @@ function App() {
         <Route element={<Login />} path="/login"/> 
         <Route element={<Register />} path="/register" />
         <Route element={<Findpw/>} path="/findpw" />
+        <Route element={<ConfirmRegister/>} path="/confirm"/>
 
         <Route  element={<Navigate to ="/"></Navigate>} path="/*"/>
       </Routes>
