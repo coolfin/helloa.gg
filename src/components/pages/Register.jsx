@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import AlertModal from "../util/Modal/AlertModal";
+
 import awsconfig from "../../service/awsconfig";
 
 import { Amplify, Auth } from "aws-amplify";
@@ -23,11 +25,20 @@ export default function Register() {
   const [phoneMessage, setPhoneMessage] = useState();
   const [nicknameMessage, setNickNameMessage] = useState();
 
+  const [showModal, setShowModal] = useState(false);
+
   // 유효성 검사
   const [ispassword, setIsPassword] = useState("");
 
   const navigate = useNavigate("");
 
+  const handleShowModal = () => {
+    setShowModal(true);
+
+    setTimeout(() => {
+      setShowModal(false);
+    }, 1000);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -127,12 +138,17 @@ export default function Register() {
                   ispassword &&
                   "white")
               }
+              onClick={() => {
+                !password&&handleShowModal();
+              }}
             >
               회원가입하기
             </button>
           </form>
         </div>
       </RegisterContainer>
+
+      {showModal && <AlertModal text="다시 입력해 주세요."/>}
     </Container>
   );
 }
