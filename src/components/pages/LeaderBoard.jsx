@@ -34,16 +34,47 @@ export default function LeaderBoard() {
             <img src="/icon/search.png" />
           </button>
         </InnerHeader>
-        
+
         <ListViewContainer>
           <ListHeader>
             <div>
-              <div>#</div> 
+              <div>#</div>
               <div>닉네임</div>
             </div>
             <div>클리어 횟수(발탄)</div>
           </ListHeader>
-          <ul></ul>
+
+          <ListItem>
+            <div>
+              <div>1</div>
+              <div>
+                <img src="/img/arkana.png"/>
+                8un
+              </div>
+            </div>
+            <div>89</div>
+          </ListItem>
+          <ListItem>
+            <div>
+              <div>2</div>
+              <div>
+                <img src="/img/arkana.png"/>
+                권은비
+              </div>
+            </div>
+            <div>42</div>
+          </ListItem>
+          <ListItem>
+            <div>
+              <div>3</div>
+              <div>
+                <img src="/img/arkana.png"/>
+                근육맨옴팡이
+              </div>
+            </div>
+            <div>23</div>
+          </ListItem>
+
         </ListViewContainer>
       </InnerContainer>
     </Container>
@@ -161,7 +192,6 @@ const ListViewContainer = styled.div`
   width: 95.1%;
   height: 95%;
 
-  background-color: gray;
 
   box-sizing: border-box;
 
@@ -180,8 +210,7 @@ const ListHeader = styled.div`
   align-items: center;
 
   color: white;
-  font-size: 0.6rem;
-  font-weight: bold;
+  font-size: 0.5rem;
 
   & div {
     width: 20%;
@@ -216,4 +245,75 @@ const ListHeader = styled.div`
     justify-content: center;
     align-items: center;
   }
+`;
+
+const ListItem = styled.li`
+width: 100%;
+height: 4.5%;
+
+background-color: #232733;
+border : 1px solid rgba(0,0,0,0.3);
+
+box-sizing:border-box;
+
+display: flex;
+
+justify-content: space-between;
+align-items: center;
+
+color: white;
+font-size: 0.5rem;
+
+margin-top: 0.1%;
+
+& div {
+  width: 20%;
+  height: 100%;
+
+  display:flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-left: 1.3%;
+
+  & div{
+    width: 6.4%
+    height:100%;
+
+  }
+
+  & div+div{
+    width: 87.2%;
+    height: 100%;
+    font-weight: bold;
+
+    display: flex;
+
+    justify-content:flex-start;
+
+    &>img {
+      width: 14%;
+      height: 100%;
+
+      border-radius:50%;
+
+      object-fit: contain;
+
+      margin-right:5%;
+
+    }
+  }
+
+}
+
+&>div+div {
+  width: 17.4%;
+  height: 50%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
 `;
