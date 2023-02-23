@@ -34,8 +34,15 @@ export default function LeaderBoard() {
             <img src="/icon/search.png" />
           </button>
         </InnerHeader>
-
+        
         <ListViewContainer>
+          <ListHeader>
+            <div>
+              <div>#</div> 
+              <div>닉네임</div>
+            </div>
+            <div>클리어 횟수(발탄)</div>
+          </ListHeader>
           <ul></ul>
         </ListViewContainer>
       </InnerContainer>
@@ -67,7 +74,7 @@ const InnerContainer = styled.div`
   width: 82%;
   height: 100%;
 
-  background-color: blue;
+  background-color: transparent;
 
   display: flex;
   align-items: center;
@@ -158,5 +165,55 @@ const ListViewContainer = styled.div`
 
   box-sizing: border-box;
 
-  margin-top: 0.6%;
+  margin-top: 1%;
+`;
+
+const ListHeader = styled.div`
+  width: 100%;
+  height: 2.4%;
+
+  background-color: #161922;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+
+  & div {
+    width: 20%;
+    height: 50%;
+
+    display:flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: 1.3%;
+
+    & div{
+      width: 6.4%
+      height:100%;
+
+    }
+
+    & div+div{
+      width: 87.2%;
+      height: 100%;
+    }
+
+  }
+
+  &>div+div {
+    width: 17.4%;
+    height: 50%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+  }
 `;
