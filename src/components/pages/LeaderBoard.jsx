@@ -28,7 +28,12 @@ export default function LeaderBoard() {
       <Nav />
 
       <InnerContainer>
-        <InnerHeader></InnerHeader>
+        <InnerHeader>
+          <input placeholder="닉네임을 입력해 주세요."></input>
+          <button>
+            <img src="/icon/search.png" />
+          </button>
+        </InnerHeader>
 
         <ListViewContainer>
           <ul></ul>
@@ -60,9 +65,14 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   width: 82%;
-  height: 76.9%;
+  height: 100%;
 
-  background-color: transparent;
+  background-color: blue;
+
+  display: flex;
+  align-items: center;
+
+  flex-direction: column;
 
   box-sizing: border-box;
 
@@ -73,11 +83,71 @@ const InnerHeader = styled.div`
   width: 95.1%;
   height: 4.2%;
 
-  background-color: white;
+  display: flex;
+  position: relative;
+
+  justify-content: flex-end;
+  align-items: center;
 
   box-sizing: border-box;
 
   margin-top: 2.4%;
+
+  & input {
+    width: 38.5%;
+    height: 100%;
+
+    background-color: #181A25;
+
+    color: white;
+    font-size: 0.7rem;
+
+    box-sizing: border-box;
+
+    border: none;
+    border-radius : 10px;
+
+    padding: 2.7%;
+
+    &::placeholder {
+      color : #2E3341;
+      font-size: 0.7rem;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+  & button {
+    width: 3.84%;
+    height: 86%;
+    background-color: inherit;
+
+    position: absolute;
+    display: flex;
+
+    justify-content :center;
+    align-items: center;
+
+    top: 50%:
+    right: 1%;
+
+    border: none;
+
+    &:hover {
+      cursor : pointer;
+      opacity: 0.7;
+    }
+
+
+    & img {
+      width: 15px;
+      height: 15px;
+
+      object-fit: contain;
+      }
+    }
+  }
 `;
 
 const ListViewContainer = styled.div`
