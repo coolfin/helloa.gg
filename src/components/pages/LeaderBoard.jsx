@@ -103,7 +103,7 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   width: 82%;
-  height: 100%;
+  height: 85%;
 
   background-color: transparent;
 
