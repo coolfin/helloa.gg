@@ -1,20 +1,59 @@
-import React from "react";
+import React, { useEffect, useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Nav() {
   const navigate = useNavigate();
+  const [userId, setUserId] = useState();
 
+  const handleMyPage = () => {
+    // setUserId( window.sessionStorage.getItem("userid") );
+    // console.log("nav:", userId);
+    // if (userId != true) {
+    //   alert("로그인을 먼저 해주세요.");
+    //   return;
+    // }
+    navigate("/mypage/" + 1 + "");
+  };
   return (
     <Container>
-        <ul>
-          <MenuList onClick={() => {navigate('/leaderboard');}}>리더보드</MenuList>
-          <MenuList onClick={() => {navigate('/tripod');}}>조율의 서</MenuList>
-          <MenuList onClick={() => {navigate('/');}}>게임도우미</MenuList>
-          <MenuList onClick={() => {navigate('/');}}>마이페이지</MenuList>
-          <MenuList onClick={() => {navigate('/');}}>클리어 인증</MenuList>
-        </ul>
-
+      <ul>
+        <MenuList
+          onClick={() => {
+            navigate("/leaderboard");
+          }}
+        >
+          리더보드
+        </MenuList>
+        <MenuList
+          onClick={() => {
+            navigate("/tripod");
+          }}
+        >
+          조율의 서
+        </MenuList>
+        <MenuList
+          onClick={() => {
+            alert("준비 중 입니다.");
+          }}
+        >
+          미니게임
+        </MenuList>
+        <MenuList
+          onClick={() => {
+            handleMyPage();
+          }}
+        >
+          마이페이지
+        </MenuList>
+        <MenuList
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          클리어 인증
+        </MenuList>
+      </ul>
     </Container>
   );
 }
@@ -43,7 +82,6 @@ const Container = styled.div`
 
     justify-content: space-between;
     align-items: center;
-
   }
 `;
 
@@ -69,6 +107,6 @@ const MenuList = styled.li`
 
   &:hover {
     cursor: pointer;
-    opacity:70%;
+    opacity: 70%;
   }
 `;

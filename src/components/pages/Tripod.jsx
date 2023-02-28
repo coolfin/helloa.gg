@@ -5,6 +5,8 @@ import styled from "styled-components";
 import JobTripod from "../util/Tripod/JobTripod";
 import TripodForm from "../util/Tripod/TripodForm";
 import SkillForm from "../util/Tripod/SkillForm";
+import Header from "../views/Header";
+import Nav from "../views/Nav";
 
 export default function Tripod() {
   const [curjob, setCurJob] = useState("워로드");
@@ -36,6 +38,8 @@ export default function Tripod() {
 
   return (
     <Container>
+      <Header/>
+      <Nav/>
       {window.sessionStorage.getItem("id")}
       <InnerContainer>
         <JobTripod onJobSelected={handleJobSelect} />
