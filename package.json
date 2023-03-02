@@ -6,6 +6,7 @@
     "@aws-amplify/ui-react": "^4.3.7",
     "@aws-sdk/client-cognito-identity-provider": "^3.272.0",
     "@geist-ui/core": "^2.3.8",
+    "@geist-ui/icons": "^1.0.2",
     "@headlessui/react": "^1.7.12",
     "@heroicons/react": "^2.0.16",
     "@testing-library/jest-dom": "^5.16.5",

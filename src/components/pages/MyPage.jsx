@@ -1,14 +1,19 @@
-import { Input, ButtonDropdown } from "@geist-ui/core";
-import React from "react";
+import React, { useMemo } from "react";
 
 import styled from "styled-components";
+import PlusCircle from '@geist-ui/icons/plusCircle'
+
 import Header from "../views/Header";
 import Nav from "../views/Nav";
 
 const STAT = ["치명", "특화", "신속", "제압", "인내", "숙련"];
-
+const ENGRAVE_NUM = [1, 2, 3, 4, 5];
 export default function MyPage() {
+  const isSelectedSets = useMemo(() => {});
 
+  const handleImage = () => {
+
+  }
   return (
     <Container>
       <Header />
@@ -52,12 +57,18 @@ export default function MyPage() {
             {STAT.map((v, index) => (
               <div>
                 <div>{v}:</div>
-                <input type="text" value={0}/>
+                <input type="text" value={0} />
               </div>
             ))}
           </PlayerStat>
 
-          <PlayerEngrave></PlayerEngrave>
+          <PlayerEngrave>
+            {ENGRAVE_NUM.map((v, index) => (
+              <div onClick={() =>{
+                handleImage(index);
+              }}>+</div>
+            ))}
+          </PlayerEngrave>
           <PlayerSkillContainer></PlayerSkillContainer>
         </BookContainer>
       </InnerContainer>
@@ -266,13 +277,13 @@ const PlayerStat = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  & >div {
+  & > div {
     width: 16%;
     height: 100%;
 
-    box-sizing : border-box;
+    box-sizing: border-box;
 
-    display:flex;
+    display: flex;
 
     justify-content: space-between;
     align-items: center;
@@ -280,33 +291,32 @@ const PlayerStat = styled.div`
     font-size: 0.6rem;
     font-weight: bold;
 
-    &>div { 
+    & > div {
       width: 40%;
-      height:100%;
+      height: 100%;
 
-      display:flex;
+      display: flex;
 
       justify-content: flex-end;
-      align-items: center
+      align-items: center;
     }
 
-    &>input {
+    & > input {
       width: 50%;
-      height:100%;
+      height: 100%;
 
-      background-color:transparent;
+      background-color: transparent;
 
       border: none;
 
       box-sizing: border-box;
-
 
       &:hover {
         cursor: pointer;
       }
 
       &:focus {
-        outline:none;
+        outline: none;
       }
     }
   }
@@ -320,15 +330,41 @@ const Players = styled.div`
   border-radius: 10px;
 `;
 const PlayerEngrave = styled.div`
-  width: 100%;
+  width: 45%;
   height: 9%;
+
+  display: flex;
+
+  justify-content: space-around;
+  align-items: center;
 
   background-color: #161922;
 
   border-radius: 10px;
+
+  & > div {
+    min-width: 20px;
+    width: 30px;
+
+    min-height: 20px;
+    height: 30px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    box-shadow: 0 -5px 5px #233033 inset;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 const PlayerSkillContainer = styled.div`
   width: 100%;
-  height: 60%;s
+  height: 60%;
   background-color: transparent;
 `;
