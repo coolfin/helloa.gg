@@ -6,6 +6,8 @@ export default function Nav() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
 
+  const nickname = window.sessionStorage.getItem("nickname");
+
   const handleMyPage = () => {
     // setUserId( window.sessionStorage.getItem("userid") );
     // console.log("nav:", userId);
@@ -27,25 +29,20 @@ export default function Nav() {
         </MenuList>
         <MenuList
           onClick={() => {
-            navigate("/tripod");
-          }}
-        >
-          조율의 서
-        </MenuList>
-        <MenuList
-          onClick={() => {
             alert("준비 중 입니다.");
           }}
         >
           미니게임
         </MenuList>
-        <MenuList
-          onClick={() => {
-            handleMyPage();
-          }}
-        >
-          마이페이지
-        </MenuList>
+        { nickname &&(
+          <MenuList
+            onClick={() => {
+              handleMyPage();
+            }}
+          >
+            마이페이지
+          </MenuList>
+        )}
         <MenuList
           onClick={() => {
             navigate("/");
@@ -86,7 +83,7 @@ const Container = styled.div`
 `;
 
 const MenuList = styled.li`
-  width: 18.3%;
+  width: 22%;
   height: 70%;
 
   display: flex;
