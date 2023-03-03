@@ -9,14 +9,25 @@ import Nav from "../views/Nav";
 const STAT = ["치명", "특화", "신속", "제압", "인내", "숙련"];
 const ENGRAVE_NUM = [1, 2, 3, 4, 5];
 const STAT_NUM = [1, 2, 3, 4, 5, 6];
+const SKILL_NUM = [1, 2, 3, 4, 5, 6, 7];
 export default function MyPage() {
   const [engraveSet, setEngraveSet] = useState([]);
   const [statpointSet, setStatPointSet] = useState([]);
+  const [skillSet, setSkillSet] = useState([]);
 
   useEffect(() => {
     setEngraveSet(ENGRAVE_NUM.map(() => false) ?? []);
     setStatPointSet(STAT_NUM.map(() => 0) ?? []);
+    setSkillSet(SKILL_NUM.map(() => false) ?? []);
   }, []);
+
+  const handleSkill = (idx) => {
+    const new_skill = [...skillSet];
+
+    new_skill[idx] = !new_skill[idx];
+    setSkillSet(new_skill);
+  }
+
   const handleImage = (idx) => {
     const new_engrave = [...engraveSet];
 
@@ -90,11 +101,84 @@ export default function MyPage() {
                   handleImage(index);
                 }}
               >
-                {engraveSet[index] ? "+" : "-"}
+                {engraveSet[index] ? "-" : "+"}
               </div>
             ))}
           </PlayerEngrave>
-          <PlayerSkillContainer></PlayerSkillContainer>
+          <PlayerSkillContainer>
+            <div>
+              {" "}
+              {/* 1행 */}
+              {[0, 1, 2].map((index) => (
+                <SkillBox>
+                  <div className="skill-btn-container">
+                    {/* 스킬 선택 */}
+                    <div className="skill-btn" onClick={() => {handleSkill(index);}}>{skillSet[index] ? "-" : "+"}</div>
+                    <div>스킬을 선택해 주세요</div>
+                  </div>
+                  <div className="tripod-container">
+                    <div>
+                      <strong>트라이포드 : </strong>1 2 1
+                    </div>
+
+                    <div className="flex-between-center jw-container">
+                      <strong>보석 :</strong>
+                      <div className="m-jw">멸</div>{" "}
+                      <div className="h-jw">홍</div>
+                    </div>
+                  </div>
+                </SkillBox>
+              ))}
+            </div>
+            <div>
+              {" "}
+              {/* 2행 */}
+              {[0, 1, 2].map((index) => (
+                <SkillBox>
+                  <div className="skill-btn-container">
+                    {/* 스킬 선택 */}
+                    <div className="skill-btn" onClick={() => {handleSkill(index);}}>{skillSet[index] ? "-" : "+"}</div>
+                    <div>스킬을 선택해 주세요</div>
+                  </div>
+                  <div className="tripod-container">
+                    <div>
+                      <strong>트라이포드 : </strong>1 2 1
+                    </div>
+
+                    <div className="flex-between-center jw-container">
+                      <strong>보석 :</strong>
+                      <div className="m-jw">멸</div>{" "}
+                      <div className="h-jw">홍</div>
+                    </div>
+                  </div>
+                </SkillBox>
+              ))}
+            </div>
+            <div>
+              {" "}
+              {/* 3행 */}
+              {[0, 1, 2].map((index) => (
+                <SkillBox>
+                  <div className="skill-btn-container">
+                    {/* 스킬 선택 */}
+                    <div className="skill-btn" onClick={() => {handleSkill(index);}}>{skillSet[index] ? "-" : "+"}</div>
+                    <div>스킬을 선택해 주세요</div>
+                  </div>
+                  <div className="tripod-container">
+                    <div>
+                      <strong>트라이포드 : </strong>1 2 1
+                    </div>
+
+                    <div className="flex-between-center jw-container">
+                      <strong>보석 :</strong>
+                      <div className="m-jw">멸</div>{" "}
+                      <div className="h-jw">홍</div>
+                    </div>
+                  </div>
+                </SkillBox>
+              ))}
+            </div>
+          </PlayerSkillContainer>
         </BookContainer>
       </InnerContainer>
     </Container>
@@ -124,8 +208,6 @@ const Container = styled.div`
 const InnerContainer = styled.div`
   width: 82%;
   flex: 1;
-
-  overflow: scroll;
 
   display: flex;
   align-items: center;
@@ -390,6 +472,114 @@ const PlayerEngrave = styled.div`
 `;
 const PlayerSkillContainer = styled.div`
   width: 100%;
-  height: 60%;
-  background-color: transparent;
+  height: 80%;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  flex-direction: column;
+
+  font-size: 0.8rem;
+
+  margin-top:5%;
+
+  box-sizing: border-box;
+
+
+  & > div {
+    width: 100%;
+    min-height: 30%;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    & + & {
+      margin-top: 1%;
+    }
+  }
+
+  & div.skill-btn {
+    min-width: 20px;
+    width: 30px;
+
+    min-height: 20px;
+    height: 30px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    border-radius: 50%;
+
+    background-color: #232733;
+
+    box-shadow: 0 -5px 5px #233033 inset;
+
+    margin-right: 1%;
+    &:hover {
+      cursor: pointer;
+      opacity: 70%;
+    }
+  }
+`;
+
+const SkillBox = styled.div`
+  width: 30%;
+  height: 100%;
+
+  display: flex;
+
+  justify-content: space-around;
+  align-items: flex-start;
+
+  flex-direction: column;
+
+  background-color: #161922;
+  border-radius: 10px;
+
+  box-sizing : border-box;
+  padding: 2%;
+
+  & div.skill-btn-container {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 0.625rem;
+
+    box-sizing: border-box;
+    margin-bottom: 5%;
+
+    & div+div {
+      margin-left : 5%;
+    }
+  }
+
+  & div.tripod-container {
+    width: 60%;
+
+    font-size: 0.625rem;
+    font-weight: normal;
+
+    & strong {
+      margin-right: 5%;
+    }
+  }
+
+  & div.jw-container {
+    width: 60%;
+    margin-top: 5%;
+
+    font-size: 0.625rem;
+    font-weight: normal;
+  }
 `;
