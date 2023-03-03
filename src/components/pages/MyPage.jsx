@@ -483,7 +483,7 @@ const PlayerSkillContainer = styled.div`
 
   font-size: 0.8rem;
 
-  margin-top:5%;
+  margin-top:3%;
 
   box-sizing: border-box;
 

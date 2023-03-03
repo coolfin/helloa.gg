@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AlertModal from "../util/Modal/AlertModal";
@@ -14,23 +14,22 @@ Amplify.configure(awsconfig);
 
 export default function Register() {
   const [userid, setUserId] = useState("");
-  const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickName] = useState("");
   const [phone, setPhone] = useState("");
-
-  //에러메시지 상태 state저장
-  const [useridMessage, setUserIdMessage] = useState("");
-  const [passwordMessage, setPasswordMessage] = useState();
-  const [phoneMessage, setPhoneMessage] = useState();
-  const [nicknameMessage, setNickNameMessage] = useState();
 
   const [showModal, setShowModal] = useState(false);
 
   // 유효성 검사
   const [ispassword, setIsPassword] = useState("");
 
+  const [checkList, setCheckList] = useState([]);
+
   const navigate = useNavigate("");
+
+  useEffect(() => {
+    setCheckList([0, 1, 2, 3, 4, 5].map(() => false) ?? []);
+  }, []);
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -49,8 +48,8 @@ export default function Register() {
           name: nickname, // optional
         },
       });
-      alert(userid,"님, 이메일 코드를 입력해 주세요.");
-      navigate("/confirm", {state: userid});
+      alert(userid, "님, 이메일 코드를 입력해 주세요.");
+      navigate("/confirm", { state: userid });
     } catch (error) {
       console.log("error signing up:", error);
     }
@@ -106,23 +105,63 @@ export default function Register() {
 
             <AgreeContainer>
               <div>
-                <input type="radio" />
+                <input
+                  type="checkbox"
+                  checked={checkList[0]}
+                  onChange={() => {
+                    checkList[0]
+                      ? setCheckList([0, 1, 2, 3, 4, 5].map(() => false) ?? [])
+                      : setCheckList([0, 1, 2, 3, 4, 5].map(() => true) ?? []);
+                  }}
+                />
                 <label>전체 동의</label>
               </div>
               <div>
-                <input type="radio" />
+                <input
+                  type="checkbox"
+                  checked={checkList[1]}
+                  onChange={() => {
+                    let new_check = [...checkList];
+                    new_check[1] = !new_check[1];
+                    setCheckList(new_check);
+                  }}
+                />
                 <label>서비스 이용약관 동의(필수)</label>
               </div>
               <div>
-                <input type="radio" />
+                <input
+                  type="checkbox"
+                  checked={checkList[2]}
+                  onChange={() => {
+                    let new_check = [...checkList];
+                    new_check[2] = !new_check[2];
+                    setCheckList(new_check);
+                  }}
+                />
                 <label>개인정보 수집 및 이용 동의(필수)</label>
               </div>
               <div>
-                <input type="radio" />
+                <input
+                  type="checkbox"
+                  checked={checkList[3]}
+                  onChange={() => {
+                    let new_check = [...checkList];
+                    new_check[3] = !new_check[3];
+                    setCheckList(new_check);
+                  }}
+                />
                 <label>만 14세 이상입니다 (필수)</label>
               </div>
               <div>
-                <input type="radio" />
+                <input
+                  type="checkbox"
+                  checked={checkList[4]}
+                  onChange={() => {
+                    let new_check = [...checkList];
+                    new_check[4] = !new_check[4];
+                    setCheckList(new_check);
+                  }}
+                />
                 <label>마케팅 수신 동의 (선택)</label>
               </div>
             </AgreeContainer>
@@ -139,7 +178,7 @@ export default function Register() {
                   "white")
               }
               onClick={() => {
-                !password&&handleShowModal();
+                !password && handleShowModal();
               }}
             >
               회원가입하기
@@ -148,7 +187,7 @@ export default function Register() {
         </div>
       </RegisterContainer>
 
-      {showModal && <AlertModal text="다시 입력해 주세요."/>}
+      {showModal && <AlertModal text="다시 입력해 주세요." />}
     </Container>
   );
 }
@@ -331,11 +370,15 @@ const AgreeContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
 
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 1);
   font-weight: bold;
   font-size: 0.6rem;
 
-  &:has(input[type="radio"]:checked) {
+  & input[type="checkbox"] {
+    margin-right: 5%;
+  }
+
+  &:has(input[type="checkbox"]:checked) {
     color: white;
   }
 
