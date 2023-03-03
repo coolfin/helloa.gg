@@ -1,19 +1,30 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import styled from "styled-components";
-import PlusCircle from '@geist-ui/icons/plusCircle'
+import PlusCircle from "@geist-ui/icons/plusCircle";
 
 import Header from "../views/Header";
 import Nav from "../views/Nav";
 
 const STAT = ["치명", "특화", "신속", "제압", "인내", "숙련"];
 const ENGRAVE_NUM = [1, 2, 3, 4, 5];
+const STAT_NUM = [1, 2, 3, 4, 5, 6];
 export default function MyPage() {
-  const isSelectedSets = useMemo(() => {});
+  const [engraveSet, setEngraveSet] = useState([]);
+  const [statpointSet, setStatPointSet] = useState([]);
 
-  const handleImage = () => {
+  useEffect(() => {
+    setEngraveSet(ENGRAVE_NUM.map(() => false) ?? []);
+    setStatPointSet(STAT_NUM.map(() => 0) ?? []);
+  }, []);
+  const handleImage = (idx) => {
+    const new_engrave = [...engraveSet];
 
-  }
+    new_engrave[idx] = !new_engrave[idx];
+    setEngraveSet(new_engrave);
+
+    console.log(engraveSet);
+  };
   return (
     <Container>
       <Header />
@@ -55,18 +66,32 @@ export default function MyPage() {
 
           <PlayerStat>
             {STAT.map((v, index) => (
-              <div>
+              <div key={v}>
                 <div>{v}:</div>
-                <input type="text" value={0} />
+                <input
+                  type="text"
+                  value={statpointSet[index]}
+                  onChange={(e) => {
+                    let new_stat = [...statpointSet];
+                    new_stat[index] = e.target.value;
+                    console.log(new_stat);
+                    setStatPointSet(new_stat);
+                  }}
+                />
               </div>
             ))}
           </PlayerStat>
 
           <PlayerEngrave>
             {ENGRAVE_NUM.map((v, index) => (
-              <div onClick={() =>{
-                handleImage(index);
-              }}>+</div>
+              <div
+                key={v}
+                onClick={() => {
+                  handleImage(index);
+                }}
+              >
+                {engraveSet[index] ? "+" : "-"}
+              </div>
             ))}
           </PlayerEngrave>
           <PlayerSkillContainer></PlayerSkillContainer>
