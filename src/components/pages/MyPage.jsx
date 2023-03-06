@@ -109,11 +109,11 @@ export default function MyPage() {
             <div>
               {" "}
               {/* 1행 */}
-              {[0, 1, 2].map((index) => (
+              {[0, 1, 2].map((v,index) => (
                 <SkillBox>
                   <div className="skill-btn-container">
                     {/* 스킬 선택 */}
-                    <div className="skill-btn" onClick={() => {handleSkill(index);}}>{skillSet[index] ? "-" : "+"}</div>
+                    <div className="skill-btn" onClick={() => {handleSkill(v);}}>{skillSet[v] ? "-" : "+"}</div>
                     <div>스킬을 선택해 주세요</div>
                   </div>
                   <div className="tripod-container">
@@ -133,7 +133,7 @@ export default function MyPage() {
             <div>
               {" "}
               {/* 2행 */}
-              {[0, 1, 2].map((index) => (
+              {[3,4,5].map((index) => (
                 <SkillBox>
                   <div className="skill-btn-container">
                     {/* 스킬 선택 */}
@@ -157,7 +157,7 @@ export default function MyPage() {
             <div>
               {" "}
               {/* 3행 */}
-              {[0, 1, 2].map((index) => (
+              {[6,7,8].map((index) => (
                 <SkillBox>
                   <div className="skill-btn-container">
                     {/* 스킬 선택 */}
@@ -325,7 +325,7 @@ const HellClearedContainer = styled.div`
   margin-top: 1%;
 
   & > div {
-    width: 18.5%;
+    width: 25%;
     height: 100%;
 
     display: flex;

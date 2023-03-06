@@ -17,6 +17,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [nickname, setNickName] = useState("");
   const [phone, setPhone] = useState("");
+  const [text, setText] = useState("다시 입력해 주세요");
 
   const [showModal, setShowModal] = useState(false);
 
@@ -31,7 +32,7 @@ export default function Register() {
     setCheckList([0, 1, 2, 3, 4, 5].map(() => false) ?? []);
   }, []);
 
-  const handleShowModal = () => {
+  const handleShowModal = (text) => {
     setShowModal(true);
 
     setTimeout(() => {
@@ -92,12 +93,14 @@ export default function Register() {
             />
             <input
               value={password}
+              type="password"
               className={"input-txt " + (password && "white")}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="비밀번호"
             />
             <input
               value={ispassword}
+              type="password"
               className={"input-txt " + (ispassword && "white")}
               onChange={(e) => setIsPassword(e.target.value)}
               placeholder="비밀번호 확인"
@@ -177,17 +180,15 @@ export default function Register() {
                   ispassword &&
                   "white")
               }
-              onClick={() => {
-                !password && handleShowModal();
-              }}
-            >
+             onClick = {() =>{handleShowModal();}}>
               회원가입하기
             </button>
           </form>
         </div>
       </RegisterContainer>
 
-      {showModal && <AlertModal text="다시 입력해 주세요." />}
+      {showModal && <AlertModal text={text} />}
+
     </Container>
   );
 }

@@ -14,26 +14,26 @@ export default function Main() {
     <Container>
       <Header />
       <Nav />
-      <NewLB //아브렐 
+      <NewLB //아브렐
         onClick={() => {
           navigate("/leaderboard");
         }}
       >
         <NewBossTextContainer>
-          <div></div>
-          <div></div>
+          <strong>[HELL]</strong>
+          <div>아브렐슈드</div>
         </NewBossTextContainer>
       </NewLB>
 
-      <CurLB> 
+      <CurLB>
         <VtLB //이전 헬단장
           onClick={() => {
             navigate("/leaderboard");
           }}
         >
           <CurBossTextContainer>
-            <div></div>
-            <div></div>
+          <strong>[HELL]</strong>
+          <div>발탄</div>
           </CurBossTextContainer>
         </VtLB>
         <VyaLB
@@ -42,8 +42,8 @@ export default function Main() {
           }}
         >
           <CurBossTextContainer>
-            <div></div>
-            <div></div>
+          <strong>[HELL]</strong>
+          <div>비아키스</div>
           </CurBossTextContainer>
         </VyaLB>
         <KKsatonLB
@@ -52,8 +52,8 @@ export default function Main() {
           }}
         >
           <CurBossTextContainer>
-            <div></div>
-            <div></div>
+          <strong>[HELL]</strong>
+          <div>쿠크세이튼</div>
           </CurBossTextContainer>
         </KKsatonLB>
       </CurLB>
@@ -72,7 +72,7 @@ const Container = styled.div`
 
   flex-direction: column;
 
-  background-color: rgba(20,23,31,0.7);
+  background-color: rgba(20, 23, 31, 0.7);
 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
@@ -184,11 +184,46 @@ const KKsatonLB = styled.div`
 `;
 
 const NewBossTextContainer = styled.div`
-  display:flex;
+  width: 100%;
+  height: 100%;
 
-  justify-content: 
+  display: flex;
+
+  justify-content: flex-end;
   align-items: flex-end;
 
-  color:white;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  padding: 4%;
+
+  color: white;
+  font-size: 1rem;
+
+  & strong {
+    font-size: 1.5rem;
+  }
 `;
-const CurBossTextContainer = styled.div``;
+const CurBossTextContainer = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  padding: 4%;
+
+  color: white;
+  font-size: 0.8rem;
+
+  & strong {
+    font-size: 1rem;
+  }
+`;
