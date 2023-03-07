@@ -3,6 +3,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import PlusCircle from "@geist-ui/icons/plusCircle";
 
+import axios from "axios";
+import { lostarkAPI } from "../../service/api.js";
+
 import Header from "../views/Header";
 import Nav from "../views/Nav";
 
@@ -15,18 +18,41 @@ export default function MyPage() {
   const [statpointSet, setStatPointSet] = useState([]);
   const [skillSet, setSkillSet] = useState([]);
 
+  
   useEffect(() => {
     setEngraveSet(ENGRAVE_NUM.map(() => false) ?? []);
     setStatPointSet(STAT_NUM.map(() => 0) ?? []);
     setSkillSet(SKILL_NUM.map(() => false) ?? []);
+    getRepCharacterInfo();
+    getPlayerNames();
   }, []);
+
+  //캐릭터 정보들 map으로 CharacterName 받아서 리스트 만들기
+  const getPlayerNames = async () => {
+    try {
+      const res = await (await axios.get('https://developer-lostark.game.onstove.com/characters/8un/siblings', lostarkAPI)).data;
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getRepCharacterInfo = async () => {
+    try{
+      const res = await (await axios.get('https://developer-lostark.game.onstove.com/armories/characters/%EC%BF%A8%ED%95%80/profiles', lostarkAPI)).data;
+      console.log("info---", res);
+    } catch (e){
+      console.log(e);
+    }
+  };
+
 
   const handleSkill = (idx) => {
     const new_skill = [...skillSet];
 
     new_skill[idx] = !new_skill[idx];
     setSkillSet(new_skill);
-  }
+  };
 
   const handleImage = (idx) => {
     const new_engrave = [...engraveSet];
@@ -40,7 +66,6 @@ export default function MyPage() {
     <Container>
       <Header />
       <Nav />
-
       <InnerContainer>
         <PlayerContainer>
           <div className="player-img"></div>
@@ -80,8 +105,10 @@ export default function MyPage() {
               <div key={v}>
                 <div>{v}:</div>
                 <input
+                  key={"stat" + index}
                   type="text"
-                  value={statpointSet[index]}
+                  placeholder="0"
+                  value={statpointSet[index] || ""}
                   onChange={(e) => {
                     let new_stat = [...statpointSet];
                     new_stat[index] = e.target.value;
@@ -109,11 +136,18 @@ export default function MyPage() {
             <div>
               {" "}
               {/* 1행 */}
-              {[0, 1, 2].map((v,index) => (
-                <SkillBox>
+              {[0, 1, 2].map((v, index) => (
+                <SkillBox key={"skillbox_" + index}>
                   <div className="skill-btn-container">
                     {/* 스킬 선택 */}
-                    <div className="skill-btn" onClick={() => {handleSkill(v);}}>{skillSet[v] ? "-" : "+"}</div>
+                    <div
+                      className="skill-btn"
+                      onClick={() => {
+                        handleSkill(v);
+                      }}
+                    >
+                      {skillSet[v] ? "-" : "+"}
+                    </div>
                     <div>스킬을 선택해 주세요</div>
                   </div>
                   <div className="tripod-container">
@@ -133,11 +167,18 @@ export default function MyPage() {
             <div>
               {" "}
               {/* 2행 */}
-              {[3,4,5].map((index) => (
-                <SkillBox>
+              {[3, 4, 5].map((index) => (
+                <SkillBox key={"skillbox_" + index}>
                   <div className="skill-btn-container">
                     {/* 스킬 선택 */}
-                    <div className="skill-btn" onClick={() => {handleSkill(index);}}>{skillSet[index] ? "-" : "+"}</div>
+                    <div
+                      className="skill-btn"
+                      onClick={() => {
+                        handleSkill(index);
+                      }}
+                    >
+                      {skillSet[index] ? "-" : "+"}
+                    </div>
                     <div>스킬을 선택해 주세요</div>
                   </div>
                   <div className="tripod-container">
@@ -157,11 +198,18 @@ export default function MyPage() {
             <div>
               {" "}
               {/* 3행 */}
-              {[6,7,8].map((index) => (
-                <SkillBox>
+              {[6, 7, 8].map((index) => (
+                <SkillBox key={"skillbox_" + index}>
                   <div className="skill-btn-container">
                     {/* 스킬 선택 */}
-                    <div className="skill-btn" onClick={() => {handleSkill(index);}}>{skillSet[index] ? "-" : "+"}</div>
+                    <div
+                      className="skill-btn"
+                      onClick={() => {
+                        handleSkill(index);
+                      }}
+                    >
+                      {skillSet[index] ? "-" : "+"}
+                    </div>
                     <div>스킬을 선택해 주세요</div>
                   </div>
                   <div className="tripod-container">
@@ -240,10 +288,12 @@ const PlayerContainer = styled.div`
     height: 100%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
-    background-image: url("/img/abrel.jpeg");
-    background-position: center center;
-    background-size: cover;
+    background-image: url("https://img.lostark.co.kr/armory/1/DC3421EF0F8242998124C681C01494E33173BD21BF739EC74010A264772F0ABC.png?v=20230213121824");
+    background-position: top center;
+    background-size: 130%;
     background-repeat: no-repeat;
+
+    border-radius: 10px;
   }
 
   & div.player-info {
@@ -483,10 +533,9 @@ const PlayerSkillContainer = styled.div`
 
   font-size: 0.8rem;
 
-  margin-top:3%;
+  margin-top: 3%;
 
   box-sizing: border-box;
-
 
   & > div {
     width: 100%;
@@ -545,7 +594,7 @@ const SkillBox = styled.div`
   background-color: #161922;
   border-radius: 10px;
 
-  box-sizing : border-box;
+  box-sizing: border-box;
   padding: 2%;
 
   & div.skill-btn-container {
@@ -559,8 +608,8 @@ const SkillBox = styled.div`
     box-sizing: border-box;
     margin-bottom: 5%;
 
-    & div+div {
-      margin-left : 5%;
+    & div + div {
+      margin-left: 5%;
     }
   }
 
